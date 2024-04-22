@@ -1,5 +1,6 @@
 'use client';
 
+import Cookies from "js-cookie";
 import * as React from "react"
 import { Button } from "@/components/ui/button";
 
@@ -14,41 +15,42 @@ import {
 import { Input } from "@/components/ui/input"
 import User from "@/model/user";
 import { setAuthHeader } from "@/services/JwtServices";
+import { useRouter } from "next/router";
 
 export default function Login() {
   const [username, setUsername] = React.useState('');
-  const [passowrd, setPassword] = React.useState('');
-  const user = new User(username, passowrd);
+  const [password, setPassword] = React.useState('');
+  const user = new User(username, password);
+  const router = useRouter();
 
-  function getCredentials() {
-    btnLogin.addEventListener('click', async function(e) {
-      e.preventDefault();
-
-      const response = await fetch("http://localhost:8080/user/login",{
+  async function submit(e) {
+    e.preventDefault();
+    
+    try {
+      const response = await fetch('http://localhost:8080/api/login', {
         method: 'POST',
-        mode: 'cors',
-        headers: {"Content-type":"application/json"},
-        referrerPolicy: 'cross-origin',
+        headers:{
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(user)
-      })
-      .then(response => {
-        if (response.status == 200) {
-          return response.json();
-        } else {
-          return null;
-        }
-      }).then(data => {
-        if (data !== null) {
-          setAuthHeader(data["token"]);
-        } else {
-          setAuthHeader(null);
-        }
-      })
-    });
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        Cookies.set('token', data.jwt, {expires: 1, sameSite: 'None', secure: true});
+
+        router.push('/welcome');
+      } else {
+        console.log('Error in the request', response.statusText);
+      }
+    } catch(e) {
+      console.error("Error", e);
+    }
+    
   }
 
-  function submit() {
-    document.getElementById('form-login').submit();
+  function show() {
+    console.log(Cookies.get('token'));
   }
 
   return (
@@ -59,8 +61,7 @@ export default function Login() {
         <CardDescription>Hello again!</CardDescription>
       </CardHeader>
       <CardContent>
-        <form id="form-login" autoCapitalize="off"
-        onSubmit={getCredentials}>
+        <form id="form-login" method="POST">
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
               <span className="material-symbols-outlined">
@@ -80,8 +81,9 @@ export default function Login() {
         </form>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline">Cancel</Button>
-        <Button onClick={submit}>Login</Button>
+        <Button variant="outline"
+        onClick={show}>Cancel</Button>
+        <Button onClick={(e) => submit(e)}>Login</Button>
       </CardFooter>
     </Card>
     </>
