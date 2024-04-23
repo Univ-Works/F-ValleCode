@@ -49,10 +49,6 @@ export default function Login() {
     
   }
 
-  function show() {
-    console.log(Cookies.get('token'));
-  }
-
   return (
     <>
     <Card className="w-[350px]">
@@ -81,8 +77,6 @@ export default function Login() {
         </form>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline"
-        onClick={show}>Cancel</Button>
         <Button onClick={(e) => submit(e)}>Login</Button>
       </CardFooter>
     </Card>

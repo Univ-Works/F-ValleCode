@@ -1,11 +1,7 @@
-export const getAuthToken = () => {
-    return window.localStorage.getItem('token');
-};
-
-export const setAuthHeader = (token) => {
-    if (token !== null) {
-        window.localStorage.setItem("token", token);
+export const setAuthHeader = (header, data) => {
+    if (data !== null) {
+        window.localStorage.setItem(header, data);
     } else {
-        window.localStorage.removeItem("token");
+        window.localStorage.removeItem(header);
     }
 }
