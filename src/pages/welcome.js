@@ -34,7 +34,7 @@ export default function Welcome() {
                     <CardContent>
                         <Label className="text-xs">
                             Un paradigma de la programación<br/>
-                            basado en clases y objetos
+                            basado en clases y objetos.
                         </Label>
                     </CardContent>
                     <CardFooter>
