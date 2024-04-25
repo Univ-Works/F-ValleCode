@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { EditorCode } from "@/components/editor/Editor";
+import { MenubarCustom } from "@/components/MenuTopics";
 
 export default function POO() {
     const [topic, setTopic] = useState('Clase');
@@ -73,12 +74,15 @@ export default function POO() {
                 {/*<div className="container mx-auto">
                     <ScrollAreaCustom block={topicBlock} onClick={(e) => topicHandle(e)}/>
     </div>*/}
-                {/*<div className="container mx-auto">
-                    <CarouselCustom question={QPOO.questions}/>
-                </div>*/}
-                <div className="flex flex-col items-center justify-center">
-                    <EditorCode />
+                <div className="container mx-auto pb-20">
+                    <MenubarCustom block={topicBlock}/>
                 </div>
+                {<div className="container mx-auto">
+                    <CarouselCustom question={QPOO.questions}/>
+                </div>}
+                {/*<div className="flex flex-col items-center justify-center">
+                    <EditorCode />
+                </div>*/}
                 {/*<div className="container mx-auto">
                         <>bur
                         <Label>A)</Label>

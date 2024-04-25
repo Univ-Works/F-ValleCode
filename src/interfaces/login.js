@@ -16,6 +16,8 @@ import { Input } from "@/components/ui/input"
 import User from "@/model/user";
 import { setAuthHeader } from "@/services/JwtServices";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import { Label } from "@/components/ui/label";
 
 export default function Login() {
   const [username, setUsername] = React.useState('');
@@ -53,8 +55,8 @@ export default function Login() {
     <>
     <Card className="w-[350px]">
       <CardHeader>
-        <CardTitle>Login</CardTitle>
-        <CardDescription>Hello again!</CardDescription>
+        <CardTitle>ValleCode</CardTitle>
+        <CardDescription></CardDescription>
       </CardHeader>
       <CardContent>
         <form id="form-login" method="POST">
@@ -63,14 +65,14 @@ export default function Login() {
               <span className="material-symbols-outlined">
                 person
               </span>
-              <Input id="username" name="username" placeholder="Username" 
+              <Input id="username" name="username" placeholder="Nombre de usuario" 
               onChange={(e) => setUsername(e.target.value)}/>
             </div>
             <div className="flex flex-col space-y-1.5">
               <span className="material-symbols-outlined">
                 key
               </span>
-              <Input id="password" name="password" type="password" placeholder="password" 
+              <Input id="password" name="password" type="password" placeholder="Contraseña" 
               onChange={(e) => setPassword(e.target.value)}/>
             </div>
           </div>
@@ -78,6 +80,7 @@ export default function Login() {
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button onClick={(e) => submit(e)}>Login</Button>
+        <Button variant="link">¿Olvidaste tu contraseña?</Button>
       </CardFooter>
     </Card>
     </>
