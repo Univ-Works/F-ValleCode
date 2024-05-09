@@ -109,7 +109,7 @@ function ProblemPoo({
   const [contentMD, setContentMD] = useState('');
 
   useEffect(() => {
-    import(`./interface/poo/constants/${fileName}`)
+    import(`./poo/constants/${fileName}`)
       .then(res => {
         fetch(res.default)
           .then(res => res.text())

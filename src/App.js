@@ -9,8 +9,12 @@ import { DataStructures } from "./view/DataStructures";
 import ReactMarkdown from "react-markdown";
 import { createRoot } from "react-dom/client";
 import Markdown from "react-markdown";
+import {ProtectedRoute, Authenticated } from "./auth/ProtectedRoute";
+import { useEffect, useState } from "react";
 
 function App() {
+  const authi = Authenticated();
+  
   return (
     <>
       <ThemeProvider 
@@ -23,9 +27,11 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Login/>} />
-            <Route path='/main' element={<Main />} />
-            <Route path='/poo' element={<Poo />} />
-            <Route path='/datastructures' element={<DataStructures />} />
+            <Route element={<ProtectedRoute auth={authi}/>}>
+              <Route path='/main' element={<Main />} />
+              <Route path='/poo' element={<Poo />} />
+              <Route path='/datastructures' element={<DataStructures />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </main>
