@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import "./css/global.css"
+
+import { ThemeProvider } from "./components/ThemeProvider";
+import { Header } from "./components/header/Header";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Login, Main } from "./view/Main";
+import { Poo } from "./view/Poo";
+import { DataStructures } from "./view/DataStructures";
+import ReactMarkdown from "react-markdown";
+import { createRoot } from "react-dom/client";
+import Markdown from "react-markdown";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ThemeProvider 
+      defaultTheme="system" 
+      attribute="class"
+      enableSystem
+      disableTransitionOnChange>
+      <Header />
+      <main className="flex min-h-sm items-center justify-center p-24">
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Login/>} />
+            <Route path='/main' element={<Main />} />
+            <Route path='/poo' element={<Poo />} />
+            <Route path='/datastructures' element={<DataStructures />} />
+          </Routes>
+        </BrowserRouter>
+      </main>
+      </ThemeProvider>
+    </>
   );
 }
 
