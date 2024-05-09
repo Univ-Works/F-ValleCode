@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader } from "../components/ui/card";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
 
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../components/ui/select";
-import { problems as Problems } from "./interface/poo/constants/problems";
+import { problems as Problems } from "./poo/constants/problems";
 import { Button } from "../components/ui/button";
 import ReactMarkdown from "react-markdown";
 
