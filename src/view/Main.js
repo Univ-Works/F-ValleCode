@@ -59,7 +59,6 @@ export function Login() {
 
     async function submit(e) {
         e.preventDefault();
-
         try {
             const response = await fetch('http://localhost:8080/api/login', {
                 method: 'POST',
@@ -68,15 +67,19 @@ export function Login() {
                 },
                 body: JSON.stringify(user)
             });
-
+            /*
+             * secure attribute is the webpage uses https
+             * secure: true = https
+             * secure: false = http
+             */
             if (response.ok) {
                 const data = await response.json();
                 Cookies.set('token', data.jwt, {
                     expires: 1,
                     sameSite: 'None',
-                    secure: true
+                    secure: false
                 });
-
+                
                 window.location.href = '/main';
             }
 
@@ -95,16 +98,16 @@ export function Login() {
                         <div className="grid w-full items-center gap-4">
                             <div className="flex flex-col space-y-1.5">
                                 <span className="material-symbols-outlined">
-                                    person
+                                    Nombre de Usuario
                                 </span>
-                                <Input id="username" name="username" placeholder="Nombre de usuario"
+                                <Input id="username" name="username" placeholder="PineberryCode"
                                     onChange={(e) => setUsername(e.target.value)} />
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <span className="material-symbols-outlined">
-                                    key
+                                    Contraseña
                                 </span>
-                                <Input id="password" name="password" type="password" placeholder="Contraseña"
+                                <Input id="password" name="password" type="password" placeholder="****"
                                     onChange={(e) => setPassword(e.target.value)} />
                             </div>
                         </div>
