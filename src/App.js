@@ -1,12 +1,15 @@
 import "./css/global.css"
 
 import { ThemeProvider } from "./components/ThemeProvider";
-import { Header } from "./components/header/Header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Login, Main } from "./view/Main";
+import { Main } from "./view/Main";
+import { Login } from "./view/Login";
 import { Poo } from "./view/Poo";
 import { DataStructures } from "./view/DataStructures";
 import { ProtectedRoute } from "./private/ProtectedRoute";
+import { Profile } from "./view/Profile";
+import {problems as Problems} from './view/constants/problems';
+import { ResolveExercise } from "./view/pages/poo/Exercise";
 
 function App() {
 
@@ -17,20 +20,28 @@ function App() {
         attribute="class"
         enableSystem
         disableTransitionOnChange>
-        <Header />
-        <main className="flex min-h-sm items-center justify-center p-24">
-          <BrowserRouter>
-            <Routes>
-              <Route path='/' element={<Login />} />
-              <Route element={<ProtectedRoute />}>
-                <Route path='/main' element={<Main />} />
-                <Route path='/poo' element={<Poo />} />
-                <Route path='/datastructures' element={<DataStructures />} />
-              </Route>
-              <Route path="*" element={<h1>Error</h1>} />
-            </Routes>
-          </BrowserRouter>
-        </main>
+        {/*<main className="flex min-h-sm items-center justify-center p-24">*/}
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Login />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path='/main' element={<Main />} />
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/poo' element={<Poo />} />
+              {/* SubRoutes of POO */}
+              {Problems.map((problem, index) => (
+                <Route
+                  key={index}
+                  path={`/poo/toresolve/${problem.title.toLowerCase().replace(' ', '')}`}
+                  element={<ResolveExercise />}
+                />
+              ))}
+              <Route path='/datastructures' element={<DataStructures />} />
+            </Route>
+            <Route path="*" element={<h1>Error</h1>} />
+          </Routes>
+        </BrowserRouter>
+        {/*</main>*/}
       </ThemeProvider>
     </>
   );
