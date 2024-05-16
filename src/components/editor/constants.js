@@ -6,9 +6,7 @@ export const LANGUAGE_VERSIONS = {
 export const CODE_SNIPPETS = {
     java: 
 `
-// No eliminar la función principal
-
-public class App {
+class solution {
     public static void main(String[] args) {
         System.out.println("Hello Coder");
     }

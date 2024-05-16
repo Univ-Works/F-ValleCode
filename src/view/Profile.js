@@ -1,19 +1,19 @@
-import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
-import { Card, CardHeader } from "../components/ui/card";
+import { HeaderPrivateUser } from "../components/header/Header";
+import { AvatarSection } from "./sections/profile/CardAvatar";
+import { Chart } from "./sections/profile/ChartExercise";
 
 export function Profile() {
     return (
         <>
-            <section>
-                <Card>
-                    <CardHeader>
-                        <Avatar>
-                            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                            <AvatarFallback>TMU</AvatarFallback>
-                        </Avatar>
-                    </CardHeader>
-                </Card>
-            </section>
+        <HeaderPrivateUser />
+        <main className="grid grid-cols-2 gap-36">
+            <div className="pl-10 pt-10">
+                <AvatarSection />
+            </div>
+            <div className="pt-10 pr-10">
+                <Chart />
+            </div>
+        </main>
         </>
     );
 }

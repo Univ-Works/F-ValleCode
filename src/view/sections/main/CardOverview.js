@@ -8,7 +8,9 @@ export const Overview = () => {
         <section className="flex">
             <Card className="mr-5">
                 <CardHeader>
-                    <CardTitle>Programación Orientada a Objetos</CardTitle>
+                    <CardTitle>
+                        Programación Orientada a Objetos
+                    </CardTitle>
                 </CardHeader>
                 <CardContent>
                     <Label className="text-xs">
@@ -18,13 +20,18 @@ export const Overview = () => {
                 </CardContent>
                 <CardFooter>
                     <Link to="/poo">
-                        <Button>Ingresar</Button>
+                        <Button 
+                        variant="ghost">
+                            Ingresar
+                        </Button>
                     </Link>
                 </CardFooter>
             </Card>
             <Card>
                 <CardHeader>
-                    <CardTitle>Estructura de datos</CardTitle>
+                    <CardTitle>
+                        Estructura de datos
+                    </CardTitle>
                 </CardHeader>
                 <CardContent>
                     <Label className="text-xs">
@@ -34,7 +41,10 @@ export const Overview = () => {
                 </CardContent>
                 <CardFooter>
                     <Link to="/datastructures">
-                        <Button>Ingresar</Button>
+                        <Button
+                        variant="ghost">
+                            Ingresar
+                        </Button>
                     </Link>
                 </CardFooter>
             </Card>

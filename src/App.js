@@ -9,7 +9,8 @@ import { DataStructures } from "./view/DataStructures";
 import { ProtectedRoute } from "./private/ProtectedRoute";
 import { Profile } from "./view/Profile";
 import {problems as Problems} from './view/constants/problems';
-import { ResolveExercise } from "./view/pages/poo/Exercise";
+import { ResolveExercise } from "./view/subpages/poo/Exercise";
+import { Error404 } from "./view/UnexpectedEndpoint";
 
 function App() {
 
@@ -32,13 +33,13 @@ function App() {
               {Problems.map((problem, index) => (
                 <Route
                   key={index}
-                  path={`/poo/toresolve/${problem.title.toLowerCase().replace(' ', '')}`}
+                  path={`/poo/tosolve/${problem.title.toLowerCase().replace(' ', '')}`}
                   element={<ResolveExercise />}
                 />
               ))}
               <Route path='/datastructures' element={<DataStructures />} />
             </Route>
-            <Route path="*" element={<h1>Error</h1>} />
+            <Route path="*" element={<Error404 />} />
           </Routes>
         </BrowserRouter>
         {/*</main>*/}

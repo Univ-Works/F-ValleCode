@@ -12,7 +12,7 @@ export function Login() {
     async function submit(e) {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:8080/api/login', {
+            const response = await fetch('http://localhost:8080/auth/login', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
@@ -31,6 +31,8 @@ export function Login() {
                     sameSite: 'None',
                     secure: false
                 });
+
+                localStorage.setItem('username', username);
 
                 window.location.href = '/main';
             }

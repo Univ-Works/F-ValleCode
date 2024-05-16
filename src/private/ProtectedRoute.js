@@ -18,10 +18,10 @@ export function ProtectedRoute() {
     if (isLoading) {
         return <h1>Loading...</h1>;
     }
-
+    let authiii = true;
     return (
         <div>
-            {isAuthenticated ? (<Outlet />) : (<Navigate to="/" />)}
+            {isAuthenticated/*authiii*/ ? (<Outlet />) : (<Navigate to="/" />)}
         </div>
     );
 }
@@ -33,7 +33,7 @@ export const fetchAuthentication = async () => {
     if (cookie !== undefined) {
         console.log(cookie);
         try {
-            const response = await fetch("http://localhost:8080/api/verify-jwt", {
+            const response = await fetch("http://localhost:8080/auth/verify-jwt", {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"

@@ -1,17 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 import {
     Card,
-    CardContent,
-    CardHeader
-}
+    CardContent}
     from "../ui/card";
 import { Editor } from "@monaco-editor/react";
 import { LanguageSelector } from "./LnSelector";
 import { CODE_SNIPPETS } from "./constants";
 import { Output } from "./Output";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { BorderAllIcon } from "@radix-ui/react-icons";
 
 export function BoxEditor() {
     const [language, setLanguage] = useState("java");
