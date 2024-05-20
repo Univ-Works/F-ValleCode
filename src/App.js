@@ -13,6 +13,7 @@ import {problems as Problems} from './view/constants/problems';
 import { ResolveExercise } from "./view/subpages_exercises/poo/Exercise";
 import { Error404 } from "./view/UnexpectedEndpoint";
 import { ValidateAndSetPassword } from "./view/CodeValidate";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
             <Route path="*" element={<Error404 />} />
           </Routes>
         </BrowserRouter>
+        <Toaster />
       </ThemeProvider>
     </>
   );

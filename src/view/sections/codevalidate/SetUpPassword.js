@@ -3,6 +3,7 @@ import { Button } from "../../../components/ui/button";
 import { Input } from "../../../components/ui/input";
 import { ToastAction } from "../../../components/ui/toast";
 import { useToast } from "../../../components/ui/use-toast";
+import { TickDate, TickTime } from "../../../utils/CurrentTime";
 
 export const SetPasswordSection = () => {
     const [newPassword, setNewPassword] = useState('');
@@ -28,7 +29,7 @@ export const SetPasswordSection = () => {
             if (response.ok) {
                 toast({
                     title: "Contraseña actualizada",
-                    description: `Fecha: ${new Date().toLocaleDateString} | hora: ${new Date().toLocaleTimeString}`,
+                    description: `Fecha: ${TickDate()} | hora: ${TickTime()}`,
                     action: (
                         <ToastAction altText="Undo toast">Ok</ToastAction>
                     )

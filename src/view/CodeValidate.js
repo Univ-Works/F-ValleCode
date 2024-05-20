@@ -5,24 +5,16 @@ import { SetPasswordSection } from "./sections/codevalidate/SetUpPassword";
 import { useEffect, useState } from "react";
 
 export function ValidateAndSetPassword() {
-    const [isAuthCode, setIsAuthCode] = useState(<Validate />);
+    const [isAuthCode, setIsAuthCode] = useState(false);
+    const [render, setRender] = useState(<Validate setIsAuthCode={setIsAuthCode}/>)
     const [naving, setNaving] = useState(<NavTitleCode />)
 
     useEffect(() => {
-        function handleKeyPress(event) {
-            if (event.key === 'Enter' || event.keyCode === 13) {
-                setIsAuthCode(<SetPasswordSection />);
-                setNaving(<NavTitlePassword />)
-            }
+        if (isAuthCode) {
+            setNaving(<NavTitlePassword />);
+            setRender(<SetPasswordSection />);
         }
-
-        const sectionCode = document.getElementById('section-code');
-        sectionCode.addEventListener('keyup', handleKeyPress);
-
-        return () => {
-            sectionCode.removeEventListener('keyup', handleKeyPress);
-        };
-    }, [])
+    }, [isAuthCode]);
 
     return (
         <>
@@ -36,7 +28,7 @@ export function ValidateAndSetPassword() {
                 id="section-code"
                 tabIndex="0"
             >
-                {isAuthCode}
+                {render}
             </section>
         </>
     );
@@ -46,7 +38,7 @@ const NavTitleCode = () => {
     return (
         <>
             <Label className="text-xl">
-                    Ingresa el código que fue proporcionado a su e-mail 📨.
+                    {`Ingresa el código que fue proporcionado a ${localStorage.getItem('email')}`} 📨.
             </Label>
         </>
     );
@@ -56,7 +48,7 @@ const NavTitlePassword = () => {
     return (
         <>
             <Label className="text-xl">
-                 {`Mi correo => ${localStorage.getItem('email')}`}.
+                 {`${localStorage.getItem('email')}`}.
             </Label>
         </>
     )
