@@ -94,7 +94,7 @@ export const ResolveExercise = () => {
                             language={language}
                             value={value}
                             onChange={extractCode} />
-                        <Output idExercise={descriptionMD} />
+                        <Output />
                     </div>
                 </section>
             </main>
