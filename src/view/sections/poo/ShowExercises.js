@@ -97,7 +97,7 @@ function TableProblems({
                         <TableCell>
                             <Link to={`/poo/tosolve/${problem.title.toLowerCase().replace(' ', '')}`}>
                                 <Button onClick={(e) => sendName(e.target.id)}
-                                    id={`btn-${index + 1}`}
+                                    id={`btn-${problem.title.toLowerCase().replace(' ','')}`}
                                     variant="ghost">
                                     {problem.title}
                                 </Button>

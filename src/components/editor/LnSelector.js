@@ -6,7 +6,6 @@ import {
     SelectContent,
     SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from "../ui/select"
@@ -22,7 +21,7 @@ export function LanguageSelector({
         <>
             <Select onValueChange={onSelect}>
                 <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Seleccionar" />
+                    <SelectValue placeholder="Seleccionar"/>
                 </SelectTrigger>
                 <SelectContent>
                     <SelectGroup>

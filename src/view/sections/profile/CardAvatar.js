@@ -3,6 +3,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "../../../components/ui/avat
 import { Card, CardContent, CardDescription, CardHeader } from "../../../components/ui/card";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import { Label } from "../../../components/ui/label";
+import { Input } from "../../../components/ui/input";
 
 export const AvatarSection = () => {
     var name = localStorage.getItem('username');
@@ -54,9 +56,7 @@ export const AvatarSection = () => {
                     <h6 className="ml-7"><b>Rank</b> {rank}</h6>
                 </CardDescription>
                 <CardContent className="grid grid-cols-1 justify-items-start pt-10">
-                    <Button variant="ghost">
-                        Editar perfil
-                    </Button>
+                    Empty
                 </CardContent>
             </Card>
         </section>

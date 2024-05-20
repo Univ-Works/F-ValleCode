@@ -1,4 +1,5 @@
 import "./css/global.css"
+import "./css/markdown_alerts.css"
 
 import { ThemeProvider } from "./components/ThemeProvider";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -9,8 +10,9 @@ import { DataStructures } from "./view/DataStructures";
 import { ProtectedRoute } from "./private/ProtectedRoute";
 import { Profile } from "./view/Profile";
 import {problems as Problems} from './view/constants/problems';
-import { ResolveExercise } from "./view/subpages/poo/Exercise";
+import { ResolveExercise } from "./view/subpages_exercises/poo/Exercise";
 import { Error404 } from "./view/UnexpectedEndpoint";
+import { ValidateAndSetPassword } from "./view/CodeValidate";
 
 function App() {
 
@@ -21,10 +23,10 @@ function App() {
         attribute="class"
         enableSystem
         disableTransitionOnChange>
-        {/*<main className="flex min-h-sm items-center justify-center p-24">*/}
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Login />} />
+            <Route path='/email/codevalidate' element={<ValidateAndSetPassword />} />
             <Route element={<ProtectedRoute />}>
               <Route path='/main' element={<Main />} />
               <Route path='/profile' element={<Profile />} />
@@ -42,7 +44,6 @@ function App() {
             <Route path="*" element={<Error404 />} />
           </Routes>
         </BrowserRouter>
-        {/*</main>*/}
       </ThemeProvider>
     </>
   );

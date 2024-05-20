@@ -1,6 +1,7 @@
 # Mostrar Atributos
 - - -
 La clase **Auto** contendrá tres atributos, los cuales son:
+
 > Marca: Volkswagen, Audi, etc.
 
 > Año de fabricación: 2010, 2018, etc.

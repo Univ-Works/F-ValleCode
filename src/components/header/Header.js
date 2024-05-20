@@ -40,7 +40,7 @@ export function HeaderPrivateUser() {
         <div>
           <ItemsNavbar />
         </div>
-        <div className="flex justify-betwee-center gap-10">
+        <div className="flex justify-between-center gap-10">
           <Button className="bg-red-600"
             variant="ghost">
             Logout

@@ -21,7 +21,7 @@ export function ProtectedRoute() {
     let authiii = true;
     return (
         <div>
-            {isAuthenticated/*authiii*/ ? (<Outlet />) : (<Navigate to="/" />)}
+            {isAuthenticated ? (<Outlet />) : (<Navigate to="/" />)}
         </div>
     );
 }

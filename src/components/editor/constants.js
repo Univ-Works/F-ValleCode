@@ -6,7 +6,7 @@ export const LANGUAGE_VERSIONS = {
 export const CODE_SNIPPETS = {
     java: 
 `
-class solution {
+class Solution {
     public static void main(String[] args) {
         System.out.println("Hello Coder");
     }
