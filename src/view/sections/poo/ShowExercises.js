@@ -33,12 +33,12 @@ const topics = [
 ]
 
 export const GeneralExercises = ({
-    //handleName,
+    handleName,
     filter
 }) => {
     return (
         <section className="grid gap-10 grid-cols-1 w-full">
-            <Select>
+            <Select onValueChange={(e) => handleName(e)}>
                 <SelectTrigger className="w-[180px]">
                     <SelectValue placeholder="Seleccionar tema" />
                 </SelectTrigger>
@@ -65,10 +65,9 @@ export const GeneralExercises = ({
         </section >
     );
 }
-/*renderContent={renderContent}, handleName={handleName}*/
+
 function TableProblems({
-    filter,
-    //handleName
+    filter
 }) {
 
     const filterProblems = filter ? Problems.filter(problem => problem.value === filter) : Problems;
