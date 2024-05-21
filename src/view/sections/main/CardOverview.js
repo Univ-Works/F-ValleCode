@@ -5,17 +5,16 @@ import { Button } from "../../../components/ui/button";
 
 export const Overview = () => {
     return (
-        <section className="flex">
-            <Card className="mr-5">
+        <section className="grid grid-cols-2">
+            <Card className="grid grid-rows-3 mr-5">
                 <CardHeader>
                     <CardTitle>
-                        Programación Orientada a Objetos
+                        POO
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
                     <Label className="text-xs">
-                        Un paradigma de la programación<br />
-                        basado en clases y objetos.
+                        Ejercicios de Programación Orientada a Objetos
                     </Label>
                 </CardContent>
                 <CardFooter>
@@ -27,7 +26,7 @@ export const Overview = () => {
                     </Link>
                 </CardFooter>
             </Card>
-            <Card>
+            <Card className="grid grid-rows-3">
                 <CardHeader>
                     <CardTitle>
                         Estructura de datos
@@ -35,8 +34,7 @@ export const Overview = () => {
                 </CardHeader>
                 <CardContent>
                     <Label className="text-xs">
-                        Hace referencia a la manera de organizar<br />
-                        y almacenar los datos en tiempo de ejecución.<br />
+                        Ejercicios de estructura de datos lineales y no lineales
                     </Label>
                 </CardContent>
                 <CardFooter>

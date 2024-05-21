@@ -49,7 +49,7 @@ export const CardLogin = ({
                                 <span className="material-symbols-outlined text-sm">
                                     <b>Nombre de Usuario</b>
                                 </span>
-                                <Input id="username" name="username" placeholder="PineberryCode"
+                                <Input id="username" name="username" placeholder="Username"
                                     onChange={extractUsername} />
                             </div>
                             <div className="flex flex-col space-y-1.5">
@@ -63,7 +63,7 @@ export const CardLogin = ({
                     </form>
                 </CardContent>
                 <CardFooter className="flex justify-between">
-                    <Button className="bg-lime-600"
+                    <Button className="bg-red-600"
                         onClick={loginBtn}
                         variant="ghost">
                         Login

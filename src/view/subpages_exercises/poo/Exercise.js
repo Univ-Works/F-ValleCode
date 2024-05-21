@@ -25,7 +25,7 @@ export const ResolveExercise = () => {
     const { toast } = useToast();
     const [output, setOutput] = useState(null);
 
-    const runCode = async () => {
+    /*const runCode = async () => {
         const sourceCode = document.getElementById('outputterminal').value;
 
         if (!sourceCode) return;
@@ -40,7 +40,7 @@ export const ResolveExercise = () => {
                 duration: 2000
             });
         }
-    }
+    }*/
 
     const extractCode = (value) => {
         setValue(value)
@@ -50,7 +50,7 @@ export const ResolveExercise = () => {
         var token = Cookies.get('token');
 
         try {
-            await fetch("http://localhost:8080/test/poo/1", {
+            await fetch("http://localhost:8080/test/poo/clasealumno", {
                 method: "POST",
                 headers: {
                     "content-type": "text/plain",
@@ -58,9 +58,14 @@ export const ResolveExercise = () => {
                 },
                 body: value
             });
-        } catch (e) { console.error(e); }
-
-        
+        } catch (e) {
+            toast({
+                title: "Un error ha ocurrido.",
+                description: e.message || "Incapaz de compilar el código",
+                status: "error",
+                duration: 1000
+            });
+        }
     }
 
     useEffect(() => {
@@ -105,23 +110,6 @@ export const ResolveExercise = () => {
 function RunCode({
     runCode
 }) {
-    /*const { toast } = useToast();
-    const [output, setOutput] = useState(null);
-
-    const runCode = async () => {
-
-        try {
-            const { run: result } = await executeCode("java", CODE_SNIPPETS["java"]);
-            setOutput(result.output.split('\n'));
-        } catch (error) {
-            toast({
-                title: "Un error ha ocurrido.",
-                description: error.message || "Incapaz de compilar el código",
-                status: "error",
-                duration: 2000
-            });
-        }
-    }*/
 
     return (
         <>

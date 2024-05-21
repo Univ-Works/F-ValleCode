@@ -69,13 +69,13 @@ function ItemsNavbar() {
     <>
       <Breadcrumb>
         <BreadcrumbList>
-          <BreadcrumbItem className="text-orange-800">
-            <BreadcrumbLink href="/main">Home</BreadcrumbLink>
+          <BreadcrumbItem className="text-red-700">
+            <BreadcrumbLink href="/main" className="text-base">Home</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
-          <BreadcrumbItem className="text-orange-800">
+          <BreadcrumbItem className="text-red-700">
             <Popover>
-              <PopoverTrigger>Perfil</PopoverTrigger>
+              <PopoverTrigger className="text-base">Perfil</PopoverTrigger>
               <PopoverContent className="flex gap-3 items-center">
                 <BreadcrumbLink href="/profile">
                   <Avatar>
@@ -90,20 +90,20 @@ function ItemsNavbar() {
             </Popover>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
-          <BreadcrumbItem className="text-orange-800">
+          <BreadcrumbItem className="text-red-700">
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-1">
-                <span className="">Estructura de datos</span>
+                <span className="text-base">Estructura de datos</span>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start">
-                <DropdownMenuItem className="text-orange-800">Lineales</DropdownMenuItem>
-                <DropdownMenuItem className="text-orange-800">No lineales</DropdownMenuItem>
+                <DropdownMenuItem className="text-red-700">Lineales</DropdownMenuItem>
+                <DropdownMenuItem className="text-red-700">No lineales</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
-          <BreadcrumbItem className="text-orange-800">
-            <BreadcrumbLink href="/poo">POO</BreadcrumbLink>
+          <BreadcrumbItem className="text-red-700">
+            <BreadcrumbLink className="text-base" href="/poo">POO</BreadcrumbLink>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

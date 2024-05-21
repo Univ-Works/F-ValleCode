@@ -6,11 +6,10 @@ export const LANGUAGE_VERSIONS = {
 export const CODE_SNIPPETS = {
     java: 
 `
-class Solution {
-    public static void main(String[] args) {
-        System.out.println("Hello Coder");
-    }
-}`,
+/*
+ * Tú código debajo de este comentario
+ */
+`,
     rust: 
 `
 // No eliminar la función principal

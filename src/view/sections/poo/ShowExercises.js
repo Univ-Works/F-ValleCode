@@ -58,7 +58,6 @@ export const GeneralExercises = ({
 
             <div>
                 <TableProblems
-                    
                     filter={filter} 
                 />
             </div>
