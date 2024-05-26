@@ -18,8 +18,8 @@ export const Chart = () => {
     );
 
     return (
-        <section>
-            <Card className="shadow-2xl">
+        <section className="w-full">
+            <Card className="pb-5 shadow-2xl">
                 <CardContent className="justify-center">
                     <PieChart width={500} height={300}>
                         <Pie

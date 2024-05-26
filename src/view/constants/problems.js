@@ -1,3 +1,7 @@
+/*
+ * Build in GraphQL 
+ */
+
 export const problems = [
     /*
      * Clases y objetos
@@ -70,3 +74,20 @@ export const problems = [
     difficulty: "Fácil"
   },
 ];
+
+export const problemDS = [
+  {
+    id: 0,
+    title: "Encuentra el número impar",
+    tema: "Arrays",
+    value: "arrays",
+    difficulty: "Fácil"
+  },
+  {
+    id: 1,
+    title: "Descubre el intruso",
+    tema: "Listas Enlazadas",
+    value: "listsingle",
+    difficulty: "Fácil"
+  }
+]

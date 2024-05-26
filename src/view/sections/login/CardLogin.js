@@ -2,7 +2,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../../../c
 import { Input } from "../../../components/ui/input"
 import { Button } from "../../../components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../../../components/ui/popover";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const CardLogin = ({
     extractUsername,
@@ -11,14 +11,28 @@ export const CardLogin = ({
 }) => {
 
     const [email, setEmail] = useState('');
+    const [canSee, setCanSee] = useState(false);
+    const [typeOfInputPassword, setTypeOfInputPassword] = useState('password');
 
     function handleEmail(e) {
         setEmail(e.target.value);
     }
 
+    function handleCanSee(e) {
+        e.preventDefault();
+        if (canSee === true) {
+            setCanSee(false);
+            setTypeOfInputPassword('password');
+        } else {
+            setCanSee(true);
+            setTypeOfInputPassword('text');
+        }
+    }
+
     async function sendCode() {
+        const url = `http://localhost:8080/email/unknown/forgotpassword?email=${encodeURIComponent(email)}`;
         try {
-            const response = await fetch(`http://localhost:8080/email/unknown/forgotpassword?email=${encodeURIComponent(email)}`, {
+            const response = await fetch(url, {
                 method: 'PUT',
                 headers: {
                     "Content-Type": "text/plain"
@@ -44,25 +58,67 @@ export const CardLogin = ({
                 </CardHeader>
                 <CardContent>
                     <form id="form-login" method="POST">
-                        <div className="grid w-full items-center gap-4">
-                            <div className="flex flex-col space-y-1.5">
-                                <span className="material-symbols-outlined text-sm">
-                                    <b>Nombre de Usuario</b>
-                                </span>
-                                <Input id="username" name="username" placeholder="Username"
+                        <div className="grid w-full justify-center items-center gap-4">
+                            <div className="flex items-center gap-3">
+                                <Button variant="ghost"
+                                className="pointer-events-none">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 15 15">
+                                    <path
+                                        fill="currentColor"
+                                        fillRule="evenodd"
+                                        d="M7.5.875a3.625 3.625 0 0 0-1.006 7.109c-1.194.145-2.218.567-2.99 1.328c-.982.967-1.479 2.408-1.479 4.288a.475.475 0 1 0 .95 0c0-1.72.453-2.88 1.196-3.612c.744-.733 1.856-1.113 3.329-1.113s2.585.38 3.33 1.113c.742.733 1.195 1.892 1.195 3.612a.475.475 0 1 0 .95 0c0-1.88-.497-3.32-1.48-4.288c-.77-.76-1.795-1.183-2.989-1.328A3.627 3.627 0 0 0 7.5.875M4.825 4.5a2.675 2.675 0 1 1 5.35 0a2.675 2.675 0 0 1-5.35 0"
+                                        clipRule="evenodd" />
+                                </svg>
+                                </Button>
+                                <Input id="username" 
+                                name="username" 
+                                placeholder="Ingrese su usuario"
                                     onChange={extractUsername} />
                             </div>
-                            <div className="flex flex-col space-y-1.5">
-                                <span className="material-symbols-outlined text-sm">
-                                    <b>Contraseña</b>
-                                </span>
-                                <Input id="password" name="password" type="password" placeholder="****"
-                                    onChange={extractPassword} />
+                            <div className="flex items-center gap-3">
+                                <Button variant="ghost"
+                                onClick={(e) => handleCanSee(e)}>
+                                    {!canSee ? (
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 15 15">
+                                            <path
+                                                fill="currentColor"
+                                                fillRule="evenodd"
+                                                d="M14.765 6.076a.5.5 0 0 1 .159.689a9.519 9.519 0 0 1-1.554 1.898l1.201 1.201a.5.5 0 0 1-.707.707l-1.263-1.263a8.472 8.472 0 0 1-2.667 1.343l.449 1.677a.5.5 0 0 1-.966.258l-.458-1.709a8.666 8.666 0 0 1-2.918 0l-.458 1.71a.5.5 0 1 1-.966-.26l.45-1.676a8.473 8.473 0 0 1-2.668-1.343l-1.263 1.263a.5.5 0 0 1-.707-.707l1.2-1.201A9.521 9.521 0 0 1 .077 6.765a.5.5 0 1 1 .848-.53a8.425 8.425 0 0 0 1.77 2.034A7.462 7.462 0 0 0 7.5 9.999c2.808 0 5.156-1.493 6.576-3.764a.5.5 0 0 1 .689-.159"
+                                                clipRule="evenodd" />
+                                        </svg>
+                                    ) : (
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 15 15">
+                                            <path
+                                                fill="currentColor"
+                                                fillRule="evenodd"
+                                                d="M7.5 11c-2.697 0-4.97-1.378-6.404-3.5C2.53 5.378 4.803 4 7.5 4s4.97 1.378 6.404 3.5C12.47 9.622 10.197 11 7.5 11m0-8C4.308 3 1.656 4.706.076 7.235a.5.5 0 0 0 0 .53C1.656 10.294 4.308 12 7.5 12s5.844-1.706 7.424-4.235a.5.5 0 0 0 0-.53C13.344 4.706 10.692 3 7.5 3m0 6.5a2 2 0 1 0 0-4a2 2 0 0 0 0 4"
+                                                clipRule="evenodd" />
+                                        </svg>
+                                    )}
+                                </Button>
+                                <Input 
+                                id="password" 
+                                name="password" 
+                                type={typeOfInputPassword}
+                                placeholder="Ingrese su contraseña"
+                                onChange={extractPassword} />
                             </div>
                         </div>
                     </form>
                 </CardContent>
-                <CardFooter className="flex justify-between">
+                <CardFooter className="grid grid-cols-1">
                     <Button className="bg-red-600"
                         onClick={loginBtn}
                         variant="ghost">
@@ -92,7 +148,7 @@ export const CardLogin = ({
                                             onChange={(e) => handleEmail(e)}
                                         />
                                         <Button variant="ghost"
-                                        onClick={sendCode}>
+                                            onClick={sendCode}>
                                             Enviar Código
                                         </Button>
                                     </div>

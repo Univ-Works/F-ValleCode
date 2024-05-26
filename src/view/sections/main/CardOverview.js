@@ -6,7 +6,7 @@ import { Button } from "../../../components/ui/button";
 export const Overview = () => {
     return (
         <section className="grid grid-cols-2">
-            <Card className="grid grid-rows-3 mr-5">
+            <Card className="grid grid-rows-3 m-5 shadow-xl">
                 <CardHeader>
                     <CardTitle>
                         POO
@@ -14,19 +14,18 @@ export const Overview = () => {
                 </CardHeader>
                 <CardContent>
                     <Label className="text-xs">
-                        Ejercicios de Programación Orientada a Objetos
+                        Ejercicios de Programación Orientado a Objetos
                     </Label>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className="flex justify-center">
                     <Link to="/poo">
-                        <Button 
-                        variant="ghost">
+                        <Button variant="link">
                             Ingresar
                         </Button>
                     </Link>
                 </CardFooter>
             </Card>
-            <Card className="grid grid-rows-3">
+            <Card className="grid grid-rows-3 m-5 shadow-xl">
                 <CardHeader>
                     <CardTitle>
                         Estructura de datos
@@ -37,10 +36,48 @@ export const Overview = () => {
                         Ejercicios de estructura de datos lineales y no lineales
                     </Label>
                 </CardContent>
-                <CardFooter>
+                <CardFooter className="flex justify-center">
                     <Link to="/datastructures">
-                        <Button
-                        variant="ghost">
+                        <Button variant="link">
+                            Ingresar
+                        </Button>
+                    </Link>
+                </CardFooter>
+            </Card>
+            <Card className="grid grid-rows-3 m-5 shadow-xl">
+                <CardHeader>
+                    <CardTitle>
+                        Podio
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <Label className="text-xs">
+                        ¡Observa tu posición en el ranking!
+                    </Label>
+                </CardContent>
+                <CardFooter className="flex justify-center">
+                    <Link to="/podio">
+                        <Button variant="link">
+                            Ingresar
+                        </Button>
+                    </Link>
+                </CardFooter>
+            </Card>
+            <Card className="grid grid-rows-3 m-5 shadow-xl">
+                <CardHeader>
+                    <CardTitle>
+                        Quiz
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <Label className="text-xs">
+                        ¡Participa en un quiz!
+                    </Label>
+                </CardContent>
+                <CardFooter className="flex justify-center">
+                    <Link to="/quiz">
+                        <Button 
+                        variant="link">
                             Ingresar
                         </Button>
                     </Link>

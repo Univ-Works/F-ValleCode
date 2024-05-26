@@ -58,6 +58,9 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        fontFamily: {
+          jaro: ['JaroFont', 'sans-serif'],
+        }
       },
       borderRadius: {
         lg: "var(--radius)",

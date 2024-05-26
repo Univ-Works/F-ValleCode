@@ -1,32 +1,28 @@
-import { BoxEditor } from "../components/editor/Editor";
-import { MenuBarCustomTopic } from "../components/MenuTopic";
+import { useState } from "react";
+import { HeaderPrivate } from "../components/header/Header";
+import { ShowExercises } from "./sections/data_structures/ShowExercises";
 
 export function DataStructures() {
-    const topicBlock = [
-        'Arrays',
-        'Listas Enlazadas',
-        'Listas Circulares',
-        'Listas doblemente enlazadas',
-        'Stacks',
-        'Queues',
-        'Trees',
-        'Grafos',
-        'Hash'
-    ]
-    
+    const [filter, setFilter] = useState("");
+
+    function handleFilter(value) {
+        setFilter(value)
+    }
+
     return (
         <>
-        <section>
-            <div className="flex justify-center pb-20">
-                <h4 className="font-bold text-7xl">Estructura de Datos</h4>
-            </div>
-            <div className="pb-10">
-                {/*<MenuBarCustomTopic block={topicBlock}/>*/}
-            </div>
-            <div className="w-full">
-                {/*<BoxEditor />*/}
-            </div>
-        </section>
+            <HeaderPrivate />
+            <nav className='flex justify-center text-3xl font-bold pt-20'>
+                <h1>
+                    Estructura de Datos
+                </h1>
+            </nav>
+            <main className='flex min-h-sm items-center justify-center p-24'>
+                <ShowExercises
+                    handleName={handleFilter}
+                    filter={filter}
+                />
+            </main>
         </>
     );
 }

@@ -15,6 +15,11 @@ export function Poo() {
   return (
     <>
       <HeaderPrivate />
+      <nav className='flex justify-center text-3xl font-bold pt-20'>
+        <h1>
+          Programación Orientada a Objetos
+        </h1>
+      </nav>
       <main className='flex min-h-sm items-center justify-center p-24'>
         <GeneralExercises
           handleName={handleFilter}

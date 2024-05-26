@@ -14,6 +14,9 @@ import { ResolveExercise } from "./view/subpages_exercises/poo/Exercise";
 import { Error404 } from "./view/UnexpectedEndpoint";
 import { ValidateAndSetPassword } from "./view/CodeValidate";
 import { Toaster } from "./components/ui/toaster";
+import { ProfileEdit } from "./view/ProfileEdit";
+import { Podio } from "./view/Podio";
+import { Quiz } from "./view/Quiz";
 
 function App() {
 
@@ -30,8 +33,11 @@ function App() {
             <Route path='/email/codevalidate' element={<ValidateAndSetPassword />} />
             <Route element={<ProtectedRoute />}>
               <Route path='/main' element={<Main />} />
+              <Route path='/quiz' element={<Quiz />} />
               <Route path='/profile' element={<Profile />} />
+              <Route path='/profile/edit' element={<ProfileEdit />} />
               <Route path='/poo' element={<Poo />} />
+              <Route path='/podio' element={<Podio />} />
               {/* SubRoutes of POO */}
               {Problems.map((problem, index) => (
                 <Route

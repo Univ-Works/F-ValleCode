@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import Cookies from "js-cookie";
+import { Progress } from "../components/ui/progress";
 
 export function ProtectedRoute() {
     const [isAuthenticated, setIsAutenticated] = useState(false)
     const [isLoading, setIsLoading] = useState(true);
+    const [progress, setProgress] = useState(13)
 
     useEffect(() => {
         const checkAuthentication= async () => {
@@ -12,13 +14,21 @@ export function ProtectedRoute() {
             setIsAutenticated(auth);
             setIsLoading(false);
         }
+        
+
         checkAuthentication();
+        /*const timer = setTimeout(() => setProgress(66), 500)
+        return () => clearTimeout(timer)*/    
     },[])
+
+    
     
     if (isLoading) {
-        return <h1>Loading...</h1>;
+        return <Progress value={progress} className="w-[90%]" />;
     }
-    let authiii = true;
+    
+
+
     return (
         <div>
             {isAuthenticated ? (<Outlet />) : (<Navigate to="/" />)}

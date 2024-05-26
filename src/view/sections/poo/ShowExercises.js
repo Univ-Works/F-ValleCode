@@ -20,7 +20,7 @@ import { Button } from "../../../components/ui/button";
 import { Link } from "react-router-dom";
 
 /*
- * Topics of exercise.
+ * Topics of exercise. GraphQL
  */
 const topics = [
     { value: "classobject", label: "Clases y Objetos", },
