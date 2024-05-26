@@ -11,7 +11,6 @@ export const CardLogin = ({
 }) => {
 
     const [email, setEmail] = useState('');
-    const [emailRecoveryPassword, setEmailRecoveryPassword] = useState('');
     const [canSee, setCanSee] = useState(false);
     const [typeOfInputPassword, setTypeOfInputPassword] = useState('password');
 
@@ -28,10 +27,6 @@ export const CardLogin = ({
 
     function handleEmail(e) {
         setEmail(e.target.value);
-    }
-
-    function handleEmailRecoveryPassword(e) {
-        setEmailRecoveryPassword(e.target.value);
     }
 
     async function sendCode() {
@@ -51,25 +46,6 @@ export const CardLogin = ({
                 window.location.href = '/email/codevalidate';
             }
         } catch (e) { console.error(e); }
-    }
-
-    async function sendPassword() {
-        const url = `http://localhost:8080/email/unknown/recoverypassword?emailRecoveryPassword=${encodeURIComponent(emailRecoveryPassword)}`;
-        try {
-            const response = await fetch(url, {
-                method: 'PUT',
-                headers: {
-                    "Content-Type": "text/plain"
-                }
-            });
-    
-            if (response.status === 302) {
-                const password = await response.text();
-                console.log(password);
-            }
-        } catch (e) {
-            console.error(e)
-        }
     }
 
     return (
@@ -146,7 +122,7 @@ export const CardLogin = ({
                     <Button className="bg-red-600"
                         onClick={loginBtn}
                         variant="ghost">
-                        Login
+                        Ingresar
                     </Button>
 
                     <Popover>
@@ -174,37 +150,6 @@ export const CardLogin = ({
                                         <Button variant="ghost"
                                             onClick={sendCode}>
                                             Enviar Código
-                                        </Button>
-                                    </div>
-                                </div>
-                            </div>
-                        </PopoverContent>
-                    </Popover>
-                    <Popover>
-                        <PopoverTrigger>
-                            <Button variant="link">
-                                Recuperar contraseña
-                            </Button>
-                        </PopoverTrigger>
-                        <PopoverContent>
-                            <div className="grid gap-3">
-                                <div className="space-y-2">
-                                    <h4 className="font-medium leading-none">Recuperar contraseña</h4>
-                                    <p className="text-sm text-muted-foreground">
-                                        Se le enviará la contraseña al correo que esté vinculado a su usario.
-                                    </p>
-                                </div>
-                                <div className="grid gap-2">
-                                    <div className="grid grid-cols-2 items-center gap-2">
-                                        <Input
-                                            id="input-user-recovery"
-                                            className="col-span-2 w-full"
-                                            placeholder="Ingrese su usuario"
-                                            onChange={(e) => handleEmailRecoveryPassword(e)}
-                                        />
-                                        <Button variant="ghost"
-                                            onClick={sendPassword}>
-                                            Enviar Contraseña
                                         </Button>
                                     </div>
                                 </div>
