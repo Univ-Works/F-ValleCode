@@ -3,6 +3,9 @@ import User from "../model/User";
 import { useState } from "react";
 import { Header } from "../components/header/Header";
 import { CardLogin } from "./sections/login/CardLogin";
+import { toast } from "../components/ui/use-toast";
+import { TickTime } from "../utils/CurrentTime";
+import { ToastAction } from "../components/ui/toast";
 
 export function Login() {
     const [username, setUsername] = useState("");
@@ -35,6 +38,14 @@ export function Login() {
                 localStorage.setItem('username', username);
 
                 window.location.href = '/main';
+            } else {
+                toast({
+                    title: "Credenciales incorrectas",
+                    description: `Hora: ${TickTime()}`,
+                    action: (
+                        <ToastAction altText="Undo toast">Ok</ToastAction>
+                    )
+                });
             }
 
         } catch (error) { console.error("Error", e) };

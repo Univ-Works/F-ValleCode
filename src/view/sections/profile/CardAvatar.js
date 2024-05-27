@@ -5,12 +5,15 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { Label } from "../../../components/ui/label";
 import { Link } from "react-router-dom";
+import { Separator } from "../../../components/ui/separator";
 
 export const AvatarSection = () => {
     var name = localStorage.getItem('username');
     var token = Cookies.get('token');
     const [rank, setRank] = useState(0);
     const [userPoints, setUserPoints] = useState(0);
+    const [bio, setBio] = useState('');
+    const [linksHttp, setLinksHttp] = useState('');
 
     async function fetchRank() {
         try {
@@ -105,8 +108,20 @@ export const AvatarSection = () => {
                         <b>Puntos</b> {userPoints}
                     </Label>
                 </CardDescription>
+                <div className="flex justify-center">
+                    <Separator className="my-7 w-96 h-1" />
+                </div>
                 <CardContent className="grid grid-cols-1 gap-4 justify-items-start pt-10">
-
+                    {bio ? (
+                        <Label>{bio}</Label>
+                    ) : (
+                        <></>
+                    )}
+                    {linksHttp ? (
+                        <Button>{linksHttp}</Button>
+                    ) : (
+                        <></>
+                    )}
                 </CardContent>
             </Card>
         </section>

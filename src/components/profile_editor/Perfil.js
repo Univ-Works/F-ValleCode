@@ -1,11 +1,47 @@
+import { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Separator } from "../ui/separator";
 import { Textarea } from "../ui/textarea";
+import { useToast } from "../ui/use-toast";
+import { ToastAction } from "../ui/toast";
+import { TickDate, TickTime } from "../../utils/CurrentTime";
+import Cookies from "js-cookie";
 
 
 export const PerfilRender = () => {
+    const [bio, setBio] = useState('');
+    let username = localStorage.getItem('username');
+    const { toast } = useToast();
+    const token = Cookies.get('token');
+
+    async function saveProfileData(e) {
+        e.preventDefault();
+        try {
+            const url = `http://localhost:8080/usr/data/edit/bio?bio=${encodeURI(bio)}&username=${encodeURI(username)}`
+            const response = await fetch(url, {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "text/plain",
+                    "Authorization": `Bearer ${token}`
+                }
+            });
+
+            if (response.ok) {
+                toast({
+                    title: "Datos guardados",
+                    description: `Fecha: ${TickDate()} - Hora: ${TickTime()}`,
+                    action: (
+                        <ToastAction altText="Undo toast">Ok</ToastAction>
+                    )
+                });
+            }
+
+        } catch (e) { console.error(e); }
+    }
+
+
     return (
         <div className="grid grid-cols-1">
             <Label className="text-2xl pb-2">
@@ -18,7 +54,8 @@ export const PerfilRender = () => {
             <Label className="text-base pb-2">
                 Bio
             </Label>
-            <Textarea className="min-w-full min-h-20 max-h-20 text-ms" />
+            <Textarea className="min-w-full min-h-20 max-h-20 text-ms"
+            onChange={(e) => setBio(e.target.value)} />
             <Label className="text-base pt-5">
                 URLs
             </Label>
@@ -27,12 +64,17 @@ export const PerfilRender = () => {
             </Label>
             <Input type="text" placeholder="https://vallecode.com" />
             <div className="flex justify-start pt-5">
-                <Button variant="ghost" className="h-7 text-xs">
+                <Button 
+                variant="ghost" 
+                className="h-7 text-xs">
                     Agregar URL
                 </Button>
             </div>
             <div className="flex justify-start pt-5">
-                <Button variant="secondary">
+                <Button 
+                variant="secondary"
+                onClick={(e) => saveProfileData(e)}
+                >
                     Guardar
                 </Button>
             </div>
