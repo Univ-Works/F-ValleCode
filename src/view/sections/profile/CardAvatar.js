@@ -10,63 +10,41 @@ import { Separator } from "../../../components/ui/separator";
 export const AvatarSection = () => {
     var name = localStorage.getItem('username');
     var token = Cookies.get('token');
+    
     const [rank, setRank] = useState(0);
     const [userPoints, setUserPoints] = useState(0);
     const [bio, setBio] = useState('');
     const [linksHttp, setLinksHttp] = useState('');
 
-    async function fetchRank() {
+    async function fetchGeneralData() {
         try {
-            const response = await fetch(`http://localhost:8080/usr/data/rankbyuser?username=${encodeURIComponent(name)}`, {
-                method: 'GET',
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            });
-            /* Fix double request to the database */
-            if (response.ok) {
-                const data = await response.json();
-                localStorage.setItem('rank', data);
-            }
-
-            var rank_user = localStorage.getItem('rank');
-            setRank(rank_user);
-
-        } catch (e) { console.error(e); }
-    }
-
-    async function fetchPoints() {
-        const url = `http://localhost:8080/usr/data/pointsbyusername?username=${encodeURIComponent(name)}`;
-        
-        try {
+            const url = `http://localhost:8080/usr/data/alldatauser?username=${name}`;
             const response = await fetch(url, {
                 method: 'GET',
                 headers: {
+                    "Content-Type": "text/plain",
                     "Authorization": `Bearer ${token}`
                 }
             });
 
             if (response.ok) {
                 const data = await response.text();
-                localStorage.setItem('points', data);
+                console.log(data);
+                let array_temp = data.split(',');
+                localStorage.setItem('bio', array_temp[0]);
+                setBio(array_temp[0]);
+                setLinksHttp(array_temp[1]);
+                setRank(array_temp[2]);
+                setUserPoints(array_temp[3]);
             }
 
-            let points = localStorage.getItem('points');
-            setUserPoints(points)
-
-        } catch (e) { console.error(e); }
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     useEffect(() => {
-        var rank_u = localStorage.getItem('rank');
-        var points_u = localStorage.getItem('points');
-        if (!rank_u || !points_u) {
-            fetchRank();
-            fetchPoints();
-        } else {
-            setRank(rank_u);
-            setUserPoints(points_u);
-        }
+        fetchGeneralData();
     }, []);
 
     return (
@@ -112,15 +90,20 @@ export const AvatarSection = () => {
                     <Separator className="my-7 w-96 h-1" />
                 </div>
                 <CardContent className="grid grid-cols-1 gap-4 justify-items-start pt-10">
-                    {bio ? (
-                        <Label>{bio}</Label>
+                    {bio !== "null" ? (
+                        <div className="flex ml-10 mr-10">
+                            <Label>{bio}</Label>
+                        </div>
                     ) : (
                         <></>
                     )}
-                    {linksHttp ? (
-                        <Button>{linksHttp}</Button>
+                    {linksHttp !== "null" ? (
+                        <Button variant="link">
+                            {linksHttp}
+                        </Button>
                     ) : (
-                        <></>
+                        <>
+                        </>
                     )}
                 </CardContent>
             </Card>
