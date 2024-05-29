@@ -17,8 +17,26 @@ import { Toaster } from "./components/ui/toaster";
 import { ProfileEdit } from "./view/ProfileEdit";
 import { Podio } from "./view/Podio";
 import { Quiz } from "./view/Quiz";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [users, setUsers] = useState([]);
+
+  async function getAllUsers() {
+    const response = await fetch("http://localhost:8080/usr/data/allusernames", {
+      method: 'GET',
+    });
+
+    if (response.ok) {
+      const data = await response.text();
+      let array_temp = data.split(',');
+      setUsers(array_temp);
+    }
+  }
+
+  useEffect(() => {
+    getAllUsers();
+  }, [])
 
   return (
     <>
@@ -34,7 +52,11 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path='/main' element={<Main />} />
               <Route path='/quiz' element={<Quiz />} />
-              <Route path='/profile' element={<Profile />} />
+              {users.map((usr, index)=> (
+                <Route key={index}
+                path={`/profile/${usr}`} 
+                element={<Profile />} />
+              )) }
               <Route path='/profile/edit' element={<ProfileEdit />} />
               <Route path='/poo' element={<Poo />} />
               <Route path='/podio' element={<Podio />} />

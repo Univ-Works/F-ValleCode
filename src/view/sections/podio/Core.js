@@ -8,6 +8,7 @@ import {
     TableRow
 } from "../../../components/ui/table";
 import { Button } from "../../../components/ui/button";
+import { Link } from "react-router-dom";
 
 export const Core = ({
     lastUsersRank,
@@ -33,9 +34,11 @@ export const Core = ({
                                     {startsIndex + index + 1}
                                 </TableCell>
                                 <TableCell className="text-center text-base">
-                                    <Button variant="link">
-                                        {user[0]}
-                                    </Button>
+                                    <Link to={`/profile/${user[0]}`}>
+                                        <Button variant="link">
+                                            {user[0]}
+                                        </Button>
+                                    </Link>
                                 </TableCell>
                                 <TableCell className="text-center text-base">
                                     {user[1]}
