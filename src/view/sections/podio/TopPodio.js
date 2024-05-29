@@ -7,6 +7,7 @@ import { Avatar, AvatarImage } from "../../../components/ui/avatar";
 import { AvatarFallback } from "@radix-ui/react-avatar";
 import { Label } from "../../../components/ui/label";
 import { Button } from "../../../components/ui/button";
+import { Link } from "react-router-dom";
 
 export const TopPodio = ({
     pointst,
@@ -32,10 +33,12 @@ export const TopPodio = ({
                     </CardHeader>
                     <CardContent className="flex justify-center items-center">
                         <Label className="text-3xl">
-                            <Button className="text-2xl"
-                            variant="link">
-                                {st}
-                            </Button>
+                            <Link to={`/profile/${st}`}>
+                                <Button className="text-2xl"
+                                    variant="link">
+                                    {st}
+                                </Button>
+                            </Link>
                         </Label>
                     </CardContent>
                 </Card>
@@ -52,10 +55,12 @@ export const TopPodio = ({
                         </CardHeader>
                         <CardContent className="flex justify-center items-center">
                             <Label className="text-3xl">
-                                <Button className="text-2xl"
-                                variant="link">
-                                    {nd}
-                                </Button>
+                                <Link to={`/profile/${nd}`}>
+                                    <Button className="text-2xl"
+                                        variant="link">
+                                        {nd}
+                                    </Button>
+                                </Link>
                             </Label>
                         </CardContent>
                     </Card>
@@ -71,10 +76,12 @@ export const TopPodio = ({
                         </CardHeader>
                         <CardContent className="flex justify-center items-center">
                             <Label>
-                                <Button className="text-2xl"
-                                variant="link">
-                                    {rd}
-                                </Button>
+                                <Link to={`/profile/${rd}`}>
+                                    <Button className="text-2xl"
+                                        variant="link">
+                                        {rd}
+                                    </Button>
+                                </Link>
                             </Label>
                         </CardContent>
                     </Card>
