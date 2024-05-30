@@ -20,7 +20,7 @@ export const Chart = () => {
     return (
         <section className="w-full">
             <Card className="pb-5 shadow-2xl">
-                <CardContent className="justify-center">
+                <CardContent className="flex justify-center">
                     <PieChart width={500} height={300}>
                         <Pie
                             activeIndex={activeIndex}

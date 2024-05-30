@@ -17,7 +17,7 @@ export function Profile() {
     return (
         <>
             <HeaderPrivateUser />
-            <main className="grid grid-cols-2 gap-36">
+            <main className="grid grid-cols-2 gap-10">
                 <div className="pl-10 pt-10">
                     <AvatarSection />
                 </div>

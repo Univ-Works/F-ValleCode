@@ -37,7 +37,7 @@ export function CardProfileEdit() {
                         </Label>
                     </div>
                     <div className="flex justify-end">
-                        <Link to="/profile">
+                        <Link to={`/profile/${localStorage.getItem('usernameFromURL')}`}>
                             <Button>
                                 <svg
                                     width="15"

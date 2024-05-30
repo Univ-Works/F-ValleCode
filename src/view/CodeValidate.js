@@ -20,9 +20,7 @@ export function ValidateAndSetPassword() {
         <>
             <Header />
             <nav className="flex items-center justify-center p-5">
-                <Label className="text-xl">
-                    {naving}
-                </Label>
+                {naving}
             </nav>
             <section className="grid grid-rows-2 justify-center p-20"
                 id="section-code"
@@ -36,11 +34,11 @@ export function ValidateAndSetPassword() {
 
 const NavTitleCode = () => {
     return (
-        <>
+        <div className="flex justify-center w-96 text-justify">
             <Label className="text-xl">
                     {`Ingresa el código que fue proporcionado a ${localStorage.getItem('email')}`} 📨.
             </Label>
-        </>
+        </div>
     );
 }
 

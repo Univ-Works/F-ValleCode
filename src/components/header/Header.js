@@ -15,7 +15,7 @@ import { HoverCardCustom } from "../HoverCard";
 export function HeaderPrivate() {
   return (
     <header className="flex justify-center pb-4 pt-10 ml-5 mr-5">
-      <div className="flex justify-between w-full max-w-screen-lg">
+      <div className="flex justify-between w-full max-w-screen-xl">
         <div>
           <ItemsNavbar />
         </div>
@@ -46,11 +46,11 @@ export function HeaderPrivateUser() {
 
   return (
     <header className="flex justify-center pb-4 pt-10 ml-5 mr-5">
-      <div className="flex justify-between w-full max-w-screen-lg">
-        <div>
+      <div className="flex justify-between w-full max-w-screen-xl">
+        <div className="flex justify-start">
           <ItemsNavbar />
         </div>
-        <div className="flex justify-between-center gap-10">
+        <div className="flex justify-end gap-10">
           {username === usernameFromURL ? (
             <Button className="bg-red-600"
               variant="ghost"

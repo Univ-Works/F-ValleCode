@@ -50,15 +50,15 @@ export const AvatarSection = () => {
     return (
         <section className="w-full">
             <Card className="pb-5 shadow-2xl">
-                <CardHeader className="grid grid-cols-3">
+                <CardHeader className="grid grid-cols-2 gap-2">
                     <Avatar className="w-28 h-28">
                         <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                         <AvatarFallback>TMU</AvatarFallback>
                     </Avatar>
-                    <h2 className="text-lg">
-                        <b>{nameFromURL ? nameFromURL : 'Username Not Found'}</b>
-                    </h2>
-                    <div className="flex justify-end">
+                    <div className="flex justify-end lg:gap-64 sm:gap-2">
+                        <Label className="text-lg">
+                            <b>{nameFromURL ? nameFromURL : 'Username Not Found'}</b>
+                        </Label>
                         {
                             username === nameFromURL ? (
                                 <Link to="/profile/edit">
@@ -95,7 +95,7 @@ export const AvatarSection = () => {
                     </Label>
                 </CardDescription>
                 <div className="flex justify-center">
-                    <Separator className="my-7 w-96 h-1" />
+                    <Separator className="my-7 w-full h-1" />
                 </div>
                 <CardContent className="grid grid-cols-1 gap-4 justify-items-start pt-10">
                     {bio !== "null" ? (

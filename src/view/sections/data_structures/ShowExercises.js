@@ -33,7 +33,7 @@ export function ShowExercises({
     
     return (
         <>
-        <section className="grid gap-10 grid-cols-1 w-full">
+        <section className="grid gap-5 grid-cols-1 w-full">
             <Select onValueChange={(e) => handleName(e)}>
                 <SelectTrigger className="w-[180px]">
                     <SelectValue placeholder="Seleccionar tema" />
@@ -77,11 +77,11 @@ function TableProblems({
         <Table>
             <TableHeader>
                 <TableRow>
-                    <TableHead><b>N°</b></TableHead>
-                    <TableHead className="w-[200px]"><b>Título</b></TableHead>
+                    <TableHead className="w-[50px]"><b>N°</b></TableHead>
+                    <TableHead><b>Título</b></TableHead>
                     <TableHead><b>Tema</b></TableHead>
-                    <TableHead><b>Dificultad</b></TableHead>
-                    <TableHead><b>Estado</b></TableHead>
+                    <TableHead className="w-[50px]"><b>Dificultad</b></TableHead>
+                    <TableHead className="w-[50px]"><b>Estado</b></TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
