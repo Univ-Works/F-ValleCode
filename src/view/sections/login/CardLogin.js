@@ -2,7 +2,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../../../c
 import { Input } from "../../../components/ui/input"
 import { Button } from "../../../components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../../../components/ui/popover";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const CardLogin = ({
     extractUsername,

@@ -18,6 +18,7 @@ import { ProfileEdit } from "./view/ProfileEdit";
 import { Podio } from "./view/Podio";
 import { Quiz } from "./view/Quiz";
 import { useEffect, useState } from "react";
+import { Administration } from "./view/Admin";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -50,6 +51,7 @@ function App() {
             <Route path='/' element={<Login />} />
             <Route path='/email/codevalidate' element={<ValidateAndSetPassword />} />
             <Route element={<ProtectedRoute />}>
+              <Route path="/admin" element={<Administration />} />
               <Route path='/main' element={<Main />} />
               <Route path='/quiz' element={<Quiz />} />
               {users.map((usr, index)=> (
