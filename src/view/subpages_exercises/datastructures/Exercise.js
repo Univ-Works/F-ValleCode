@@ -10,8 +10,8 @@ import { CODE_SNIPPETS } from "../../../components/editor/constants";
 import Cookies from "js-cookie";
 import { HoverCardCustom } from "../../../components/HoverCard";
 
-export const ResolveExercise = () => {
-    var descriptionMD = localStorage.getItem('idExercise');
+export const ResolveExerciseDS = () => {
+    var descriptionMD = localStorage.getItem('idExercise').replaceAll(' ', '');
 
     const fileName = `${descriptionMD}.md`;
     const [contentMD, setContentMD] = useState('');
@@ -19,8 +19,8 @@ export const ResolveExercise = () => {
     /*
      * States of BoxEditor 
      */
-    const [language, setLanguage] = useState("java");
-    const [value, setValue] = useState(CODE_SNIPPETS["java"]);
+    const [language, setLanguage] = useState("rust");
+    const [value, setValue] = useState(CODE_SNIPPETS["rust"]);
 
     const { toast } = useToast();
     const [output, setOutput] = useState(null);
@@ -33,7 +33,7 @@ export const ResolveExercise = () => {
         var token = Cookies.get('token');
 
         try {
-            await fetch("http://localhost:8080/test/poo/clasealumno", {
+            await fetch("http://localhost:8080/test/datastructure/findodd", {
                 method: "POST",
                 headers: {
                     "content-type": "text/plain",
@@ -52,7 +52,7 @@ export const ResolveExercise = () => {
     }
 
     useEffect(() => {
-        import(`../../constants/poo/${fileName}`)
+        import(`../../constants/datastructures/${fileName}`)
             .then(res => {
                 fetch(res.default)
                     .then(res => res.text())
@@ -81,8 +81,8 @@ export const ResolveExercise = () => {
                                         fill="currentColor"
                                         fillRule="evenodd"
                                         clipRule="evenodd">
-                                    </path
-                                    ></svg>
+                                    </path>
+                                </svg>
                             </Button>
                         }
                         content="Solución"

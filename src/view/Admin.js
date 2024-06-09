@@ -1,13 +1,15 @@
 import { Label } from "../components/ui/label";
-import { Header } from "../components/header/Header";
+import { HeaderPrivateAdmin } from "../components/header/Header";
 import { ListUsers } from "./sections/admin/TableShowUsers";
+import { useState } from "react";
 
 export const Administration = () => {
+    
     return (
         <>
-        <Header />
+        <HeaderPrivateAdmin />
         <nav className="flex justify-center p-2">
-            <Label className="text-3xl">Área de administración</Label>
+            <Label className="text-3xl">Área de Administración de Usuarios</Label>
         </nav>
         <main className="flex justify-center p-20">
             <ListUsers />
