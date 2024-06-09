@@ -72,8 +72,8 @@ export function CardProfileEdit() {
                             <ToggleGroupItem
                                 value="account"
                                 aria-label="Toggle account"
-                                className="w-full">
-                                <Label>Cuenta</Label>
+                                className="w-full pointer-events-none opacity-50">
+                                <Label >Cuenta</Label>
                             </ToggleGroupItem>
                         </ToggleGroup>
                     </div>
