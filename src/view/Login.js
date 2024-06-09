@@ -48,7 +48,7 @@ export function Login() {
                 });
             }
 
-        } catch (error) { console.error("Error", e) };
+        } catch (error) { console.error("Error", error) };
 
     }
 
