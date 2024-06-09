@@ -69,7 +69,8 @@ export const ResolveExercise = () => {
                 <section className="grid grid-cols-3 gap-5 p-5">
                     <HoverCardCustom
                         trigger={
-                            <Button variant="ghost">
+                            <Button variant="ghost"
+                            className="pointer-events-none opacity-50">
                                 <svg
                                     width="15"
                                     height="15"
