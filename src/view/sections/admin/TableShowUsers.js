@@ -43,6 +43,26 @@ export const ListUsers = () => {
         }
     }
 
+    async function disableOrEnableUserById(index, id) {
+        changeColor(index);
+        
+        try {
+            const response = await fetch(`http://localhost:8080/admin/disableorenableuser?id=${encodeURIComponent(id)}`, {
+                method: 'PUT',
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "text/plain"
+                }
+            });
+
+            if (response.ok) {
+                window.location.reload();
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
     function changeColor(index) {
         setButtonColors(prevState => ({
             ...prevState,
@@ -72,7 +92,8 @@ export const ListUsers = () => {
                 <TableBody>
                     {array.map((element, index) => (
                         <TableRow key={index}>
-                            <TableCell className="text-center text-base">
+                            <TableCell className="text-center text-base"
+                            id={element[0]}>
                                 {element[0]}
                             </TableCell>
                             <TableCell className="text-center text-base">
@@ -93,8 +114,8 @@ export const ListUsers = () => {
                             <TableCell className="text-center text-base">
                                 <Button variant="ghost"
                                 id={index}
-                                className={buttonColors[index] ? ('bg-red-800') : ('bg-sky-800')}
-                                onClick={() => changeColor(index)}>
+                                className={element[6] !== "Habilitado" ? ('bg-red-800') : ('bg-sky-800')}
+                                onClick={() => disableOrEnableUserById(index, element[0])}>
                                     {element[6]}
                                 </Button>
                             </TableCell>

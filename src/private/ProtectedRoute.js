@@ -16,6 +16,10 @@ export function ProtectedRoute() {
             setIsAutenticated(true);
             setRole(auth[1]);
         }
+        
+        if (auth[2] === 'Inhabilitado') {
+            setIsAutenticated(false)
+        }
         setIsLoading(false);
     }
 
@@ -68,7 +72,7 @@ export const fetchAuthentication = async () => {
                 let data = (await response.text()).split(',');
                 auth_array[0] = data[0];
                 auth_array[1] = data[1];
-
+                auth_array[2] = data[2];
             }
 
         } catch (e) { console.error(e); }
