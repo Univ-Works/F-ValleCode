@@ -91,7 +91,8 @@ export const ResolveExerciseDS = () => {
                     <RunCode runCode={sendCode} />
                     <HoverCardCustom
                         trigger={
-                            <Button variant="ghost">
+                            <Button variant="ghost"
+                            className="pointer-events-none opacity-50">
                                 <svg
                                     width="15"
                                     height="15"
