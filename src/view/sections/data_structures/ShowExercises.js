@@ -11,10 +11,11 @@ import { problemDS as Problems } from "../../constants/problems";
 import { Button } from "../../../components/ui/button";
 import { Link } from "react-router-dom";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../../components/ui/table";
+import { DataStructureTopics as topics } from "../../constants/topic";
 /*
  * Topics of exercise.
  */
-const topics = [
+/*const topics = [
     { value: "arrays", label: "Arrays", },
     { value: "listsingle", label: "Listas Enlazadas", },
     { value: "listdouble", label: "Listas doblemente enlazadas", },
@@ -23,7 +24,7 @@ const topics = [
     { value: "queues", label: "Queues", },
     { value: "trees", label: "Trees", },
     { value: "graphs", label: "Grafos", }
-];
+];*/
 
 export function ShowExercises({
     handleName,

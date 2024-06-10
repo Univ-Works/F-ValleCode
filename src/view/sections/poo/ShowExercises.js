@@ -18,11 +18,12 @@ import {
 import { problems as Problems } from "../../constants/problems";
 import { Button } from "../../../components/ui/button";
 import { Link } from "react-router-dom";
+import { ProgOrientedObjectTopics as topics } from "../../constants/topic";
 
 /*
  * Topics of exercise. GraphQL
  */
-const topics = [
+/*const topics = [
     { value: "classobject", label: "Clases y Objetos", },
     { value: "encapsulation", label: "Encapsulación", },
     { value: "abstract", label: "Abstract", },
@@ -30,7 +31,7 @@ const topics = [
     { value: "compoaggr", label: "Asociación entre clases", },
     { value: "inheritance", label: "Herencia", },
     { value: "polimorfism", label: "Polimorfismo", }
-]
+]*/
 
 export const GeneralExercises = ({
     handleName,
