@@ -1,8 +1,8 @@
 export const DataStructureTopics = [
     { value: "arrays", label: "Arrays", },
-    { value: "listsingle", label: "Listas Enlazadas", },
-    { value: "listdouble", label: "Listas doblemente enlazadas", },
-    { value: "listcircu", label: "Listas Circulares", },
+    { value: "singlelist", label: "Listas Enlazadas", },
+    { value: "doublelist", label: "Listas doblemente enlazadas", },
+    { value: "circulist", label: "Listas Circulares", },
     { value: "stacks", label: "Stacks", },
     { value: "queues", label: "Queues", },
     { value: "trees", label: "Trees", },
