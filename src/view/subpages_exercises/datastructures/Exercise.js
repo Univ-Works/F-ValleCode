@@ -19,8 +19,8 @@ export const ResolveExerciseDS = () => {
     /*
      * States of BoxEditor 
      */
-    const [language, setLanguage] = useState("rust");
-    const [value, setValue] = useState(CODE_SNIPPETS["rust"]);
+    const [language, setLanguage] = useState("java");
+    const [value, setValue] = useState(CODE_SNIPPETS["java"]);
 
     const { toast } = useToast();
     const [output, setOutput] = useState(null);
