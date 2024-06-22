@@ -125,9 +125,9 @@ function TableProblems({
                     <TableRow key={`${index}`}>
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>
-                            <Link to={`/datastructures/tosolve/${problem[1].toLowerCase().replaceAll(' ', '')}`}>
+                            <Link to={`/datastructures/tosolve/${problem[4].trim()}`}>
                                 <Button onClick={(e) => sendName(e.target.id)}
-                                    id={`btn-${problem[1].toLowerCase().replaceAll(' ', '')}`}
+                                    id={`btn-${problem[4].trim()}`}
                                     variant="ghost">
                                     {problem[1]}
                                 </Button>

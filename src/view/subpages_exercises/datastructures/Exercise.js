@@ -9,10 +9,14 @@ import { Output } from "../../../components/editor/Output";
 import { CODE_SNIPPETS } from "../../../components/editor/constants";
 import Cookies from "js-cookie";
 import { HoverCardCustom } from "../../../components/HoverCard";
+import { useLocation } from "react-router-dom";
 
 export const ResolveExerciseDS = () => {
-    var descriptionMD = localStorage.getItem('idExercise').replaceAll(' ', '');
+    const location = useLocation();
+    const [labelExercise, setLabelExercise] = useState();
 
+    var descriptionMD = localStorage.getItem('idExercise').replaceAll(' ', '');
+    var username = localStorage.getItem('username');
     const fileName = `${descriptionMD}.md`;
     const [contentMD, setContentMD] = useState('');
 
@@ -20,26 +24,36 @@ export const ResolveExerciseDS = () => {
      * States of BoxEditor 
      */
     const [language, setLanguage] = useState("java");
-    const [value, setValue] = useState(CODE_SNIPPETS["java"]);
+    const [code, setCode] = useState();
 
     const { toast } = useToast();
     const [output, setOutput] = useState(null);
 
     const extractCode = (value) => {
-        setValue(value)
+        setCode(value)
     }
 
     const sendCode = async () => {
         var token = Cookies.get('token');
 
+        /*const formData = new FormData();
+        formData.append("labelExercise", labelExercise);
+        formData.append("username", username);
+        formData.append("code", code);*/
+        const data = {
+            labelExercise: labelExercise,
+            username: username,
+            code: code
+        }
+
         try {
-            await fetch("http://localhost:8080/test/datastructure/findodd", {
+            await fetch("http://localhost:8080/test/ds/findtheoddnumbers", {
                 method: "POST",
                 headers: {
-                    "content-type": "text/plain",
+                    "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
                 },
-                body: value
+                body: JSON.stringify(data)
             });
         } catch (e) {
             toast({
@@ -59,8 +73,11 @@ export const ResolveExerciseDS = () => {
                     .then(res => setContentMD(res))
             })
             .catch(error => console.log(error));
+            
+        const parts = location.pathname.split("/");
+        setLabelExercise(parts[parts.length - 1]);
 
-    }, [fileName]);
+    }, [fileName, location]);
 
     return (
         <>
@@ -127,7 +144,7 @@ export const ResolveExerciseDS = () => {
                     <div>
                         <BoxEditor
                             language={language}
-                            value={value}
+                            value={code}
                             onChange={extractCode} />
                         <Output />
                     </div>

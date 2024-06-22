@@ -129,9 +129,9 @@ function TableProblems({
                     <TableRow key={`${index}`}>
                         <TableCell>{index + 1}</TableCell>
                         <TableCell>
-                            <Link to={`/poo/tosolve/${problem[1].toLowerCase().replace(' ', '')}`}>
+                            <Link to={`/poo/tosolve/${problem[4].trim()}`}>
                                 <Button onClick={(e) => sendName(e.target.id)}
-                                    id={`btn-${problem[1].toLowerCase().replace(' ', '')}`}
+                                    id={`btn-${problem[4].trim()}`}
                                     variant="ghost">
                                     {problem[1]}
                                 </Button>

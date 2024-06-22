@@ -103,14 +103,14 @@ function App() {
               {oopProblems.map((problem, index) => (
                 <Route
                   key={index}
-                  path={`/poo/tosolve/${problem[1].toLowerCase().replaceAll(' ', '')}`}
+                  path={`/poo/tosolve/${problem[4].trim()}`}
                   element={<ResolveExercise />}
                 />
               ))}
               {dsProblems.map((problem, index) => (
                 <Route
                   key={index}
-                  path={`/datastructures/tosolve/${problem[1].toLowerCase().replaceAll(' ', '')}`}
+                  path={`/datastructures/tosolve/${problem[4].trim()}`}
                   element={<ResolveExerciseDS />}
                 />
               ))}
