@@ -1,8 +1,8 @@
 export const DataStructureTopics = [
     { value: "arrays", label: "Arrays", },
-    { value: "singlelist", label: "Listas Enlazadas", },
-    { value: "doublelist", label: "Listas doblemente enlazadas", },
-    { value: "circulist", label: "Listas Circulares", },
+    { value: "singlelinkedlist", label: "Listas Enlazadas", },
+    { value: "doublelinkedlist", label: "Listas doblemente enlazadas", },
+    { value: "circularlinkedlist", label: "Listas Circulares", },
     { value: "stacks", label: "Stacks", },
     { value: "queues", label: "Queues", },
     { value: "trees", label: "Trees", },
@@ -10,11 +10,8 @@ export const DataStructureTopics = [
 ];
 
 export const ProgOrientedObjectTopics = [
-    { value: "classobject", label: "Clases y Objetos", },
     { value: "encapsulation", label: "Encapsulación", },
-    { value: "abstract", label: "Abstract", },
-    { value: "interface", label: "Interface", },
-    { value: "compoaggr", label: "Asociación entre clases", },
+    { value: "abstracttion", label: "Abstract", },
     { value: "inheritance", label: "Herencia", },
     { value: "polimorfism", label: "Polimorfismo", }
 ];

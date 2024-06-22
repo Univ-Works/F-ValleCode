@@ -23,6 +23,8 @@ import { ResolveExerciseDS } from "./view/subpages_exercises/datastructures/Exer
 
 function App() {
   const [users, setUsers] = useState([]);
+  const [dsProblems, setDsProblems] = useState([]);
+  const [oopProblems, setOopProblems] = useState([]);
 
   async function getAllUsers() {
     const response = await fetch("http://localhost:8080/usr/data/allusernames", {
@@ -36,8 +38,42 @@ function App() {
     }
   }
 
+  async function getDataStructureProblems() {
+    const response = await fetch("http://localhost:8080/showexercises?problemTopic=ds", {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "text/plain"
+      }
+    });
+
+    if (response.status === 200) {
+        const data = await response.text();
+        const problemsArray = data.split('-').map(row => row.split(','));
+        setDsProblems(problemsArray);
+        localStorage.setItem('dsProblems', data);
+    }
+  }
+
+  async function getOopProblems() {
+    const response = await fetch("http://localhost:8080/showexercises?problemTopic=oop", {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "text/plain"
+      }
+    });
+
+    if (response.status === 200) {
+      const data = await response.text();
+      const problemsArray = data.split('-').map(row => row.split(','));
+      setOopProblems(problemsArray);
+      localStorage.setItem('oopProblems', data);
+    }
+  }
+
   useEffect(() => {
     getAllUsers();
+    getDataStructureProblems();
+    getOopProblems();
   }, [])
 
   return (
@@ -64,17 +100,17 @@ function App() {
               <Route path='/poo' element={<Poo />} />
               <Route path='/podio' element={<Podio />} />
               {/* SubRoutes of POO */}
-              {ProblemsPOO.map((problem, index) => (
+              {oopProblems.map((problem, index) => (
                 <Route
                   key={index}
-                  path={`/poo/tosolve/${problem.title.toLowerCase().replaceAll(' ', '')}`}
+                  path={`/poo/tosolve/${problem[1].toLowerCase().replaceAll(' ', '')}`}
                   element={<ResolveExercise />}
                 />
               ))}
-              {ProblemsDS.map((problem, index) => (
+              {dsProblems.map((problem, index) => (
                 <Route
                   key={index}
-                  path={`/datastructures/tosolve/${problem.title.toLowerCase().replaceAll(' ', '')}`}
+                  path={`/datastructures/tosolve/${problem[1].toLowerCase().replaceAll(' ', '')}`}
                   element={<ResolveExerciseDS />}
                 />
               ))}

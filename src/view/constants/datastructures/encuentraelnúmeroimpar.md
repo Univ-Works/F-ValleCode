@@ -1,10 +1,19 @@
 # Encuentra los Números Impares
 
-Se te dará un array con una longitud de `6`. Iterarás el array para encontrar los elementos impares respectivos.
+El método `findOddNumbers` tiene como único parámetro de tipo **int[]**. Deberás encontrar todos los números impares del array.
+
+###### Input
+
+```
+int[] t1 = {2,4,6,5,9,8};
+```
+
+###### Output
+
+```
+{5,9}
+```
 
 Asegúrate que tu `output` tenga la siguiente formato de salida:
 
-- `Impares: [x, y, z]`
-
-> [!NOTE]
-> Evalúa si alguno de los elementos del array son nulos.
+- `Impares: {x,y,z}`
