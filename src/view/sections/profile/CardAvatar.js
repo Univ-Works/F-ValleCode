@@ -15,7 +15,28 @@ export const AvatarSection = () => {
     const [rank, setRank] = useState(0);
     const [userPoints, setUserPoints] = useState(0);
     const [bio, setBio] = useState('');
-    const [linksHttp, setLinksHttp] = useState('');
+    const [linksHttp, setLinksHttp] = useState([]);
+
+    async function getUrlsByUser() {
+        try {
+            const url = `http://localhost:8080/usr/data/getallurlsbyuser?username=${nameFromURL}`;
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "text/plain"
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.text();
+                let array_temp = data.split(',');
+
+                setLinksHttp(array_temp);
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
 
     async function fetchGeneralData() {
         try {
@@ -30,12 +51,11 @@ export const AvatarSection = () => {
 
             if (response.ok) {
                 const data = await response.text();
-                let array_temp = data.split(',');
+                let array_temp = data.split('¬');
                 localStorage.setItem('bio', array_temp[0]);
                 setBio(array_temp[0]);
-                setLinksHttp(array_temp[1]);
-                setRank(array_temp[2]);
-                setUserPoints(array_temp[3]);
+                setRank(array_temp[1]);
+                setUserPoints(array_temp[2]);
             }
 
         } catch (e) {
@@ -45,6 +65,7 @@ export const AvatarSection = () => {
 
     useEffect(() => {
         fetchGeneralData();
+        getUrlsByUser();
     }, []);
 
     return (
@@ -105,14 +126,17 @@ export const AvatarSection = () => {
                     ) : (
                         <></>
                     )}
-                    {linksHttp !== "null" ? (
-                        <Button variant="link">
-                            {linksHttp}
-                        </Button>
-                    ) : (
-                        <>
-                        </>
-                    )}
+                    {linksHttp.map((element, index) => (
+                        <div key={index}>
+                            <Button
+                                variant="link"
+                            >
+                                <a href={element} target="_blank" rel="noreferrer">
+                                    {element}
+                                </a>
+                            </Button>
+                        </div>
+                    ))}
                 </CardContent>
             </Card>
         </section>
