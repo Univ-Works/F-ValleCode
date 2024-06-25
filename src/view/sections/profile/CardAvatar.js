@@ -118,25 +118,39 @@ export const AvatarSection = () => {
                 <div className="flex justify-center">
                     <Separator className="my-7 w-full h-1" />
                 </div>
-                <CardContent className="grid grid-cols-1 gap-4 justify-items-start pt-10">
+                <CardContent className="grid grid-cols-1 gap-2 justify-items-start pt-10">
                     {bio !== "null" ? (
-                        <div className="flex ml-10 mr-10">
-                            <Label>{bio}</Label>
+                        <>
+                        <div className="flex ml-5 mr-10">
+                            <Label className="text-lg">{bio}</Label>
                         </div>
+                        <Separator className="my-7 w-full h-1" />
+                        </>
                     ) : (
                         <></>
                     )}
-                    {linksHttp.map((element, index) => (
-                        <div key={index}>
-                            <Button
-                                variant="link"
-                            >
-                                <a href={element} target="_blank" rel="noreferrer">
-                                    {element}
-                                </a>
-                            </Button>
+                    {linksHttp !== null ? (
+                        <>
+                        <div className="flex ml-5 mr-10">
+                            <Label className="text-lg">Links</Label>
                         </div>
-                    ))}
+                        {linksHttp.map((element, index) => (
+                            <div key={index}
+                            className="ml-2">
+                                <Button
+                                    variant="link"
+                                >
+                                    <a href={element} target="_blank" rel="noreferrer">
+                                        {element}
+                                    </a>
+                                </Button>
+                            </div>
+                        ))}
+                        </>
+                    ) : (
+                        <></>
+                    )
+                    }
                 </CardContent>
             </Card>
         </section>
