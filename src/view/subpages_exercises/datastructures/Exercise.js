@@ -10,6 +10,7 @@ import { CODE_SNIPPETS } from "../../../components/editor/constants";
 import Cookies from "js-cookie";
 import { HoverCardCustom } from "../../../components/HoverCard";
 import { useLocation } from "react-router-dom";
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "../../../components/ui/resizable";
 
 export const ResolveExerciseDS = () => {
     const location = useLocation();
@@ -36,10 +37,6 @@ export const ResolveExerciseDS = () => {
     const sendCode = async () => {
         var token = Cookies.get('token');
 
-        /*const formData = new FormData();
-        formData.append("labelExercise", labelExercise);
-        formData.append("username", username);
-        formData.append("code", code);*/
         const data = {
             labelExercise: labelExercise,
             username: username,
@@ -73,7 +70,7 @@ export const ResolveExerciseDS = () => {
                     .then(res => setContentMD(res))
             })
             .catch(error => console.log(error));
-            
+
         const parts = location.pathname.split("/");
         setLabelExercise(parts[parts.length - 1]);
 
@@ -87,7 +84,7 @@ export const ResolveExerciseDS = () => {
                     <HoverCardCustom
                         trigger={
                             <Button variant="ghost"
-                            className="pointer-events-none opacity-50">
+                                className="pointer-events-none opacity-50">
                                 <svg
                                     width="15"
                                     height="15"
@@ -110,7 +107,7 @@ export const ResolveExerciseDS = () => {
                     <HoverCardCustom
                         trigger={
                             <Button variant="ghost"
-                            className="pointer-events-none opacity-50">
+                                className="pointer-events-none opacity-50">
                                 <svg
                                     width="15"
                                     height="15"
@@ -131,23 +128,38 @@ export const ResolveExerciseDS = () => {
 
                 </section>
 
-                <section className="grid grid-cols-2">
-                    <div>
-                        <Card className="shadow-2xl">
-                            <CardContent>
-                                <div className="mt-10 mb-5" id="markdown-body">
-                                    <ReactMarkdown>{contentMD}</ReactMarkdown>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </div>
-                    <div>
-                        <BoxEditor
-                            language={language}
-                            value={code}
-                            onChange={extractCode} />
-                        <Output />
-                    </div>
+                <section className="grid grid-cols-1">
+                    <ResizablePanelGroup
+                        direction="horizontal"
+                        className="max-w-screen-xl min-w-screen-md md:min-w-screen-sm lg:min-w-screen-md rounded-lg border shadow-2xl"
+                    >
+                        <ResizablePanel className="min-w-screen-md max-w-screen-md">
+                            <div>
+                                <Card className="shadow-2xl">
+                                    <CardContent>
+                                        <div className="mt-10 mb-5" id="markdown-body">
+                                            <ReactMarkdown>{contentMD}</ReactMarkdown>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        </ResizablePanel>
+                        <ResizableHandle withHandle />
+                        <ResizablePanel>
+                            <ResizablePanelGroup direction="vertical">
+                                <ResizablePanel>
+                                    <BoxEditor
+                                        language={language}
+                                        value={code}
+                                        onChange={extractCode} />
+                                </ResizablePanel>
+                                <ResizableHandle withHandle />
+                                <ResizablePanel>
+                                    <Output />
+                                </ResizablePanel>
+                            </ResizablePanelGroup>
+                        </ResizablePanel>
+                    </ResizablePanelGroup>
                 </section>
             </main>
         </>
