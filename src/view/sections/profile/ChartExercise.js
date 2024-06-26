@@ -1,14 +1,12 @@
 import { Pie, PieChart, Sector } from "recharts";
 import { Card, CardContent } from "../../../components/ui/card";
-import { useCallback, useState } from "react";
-
-const data = [
-    { name: 'Fácil', value: 400 },
-    { name: 'Medio', value: 300 },
-    { name: 'Difícil', value: 300 },
-];
+import { useCallback, useEffect, useState } from "react";
 
 export const Chart = () => {
+    const [pointsEasy, setPointsEasy] = useState(0);
+    const [pointsMedium, setPointsMedium] = useState(0);
+    const [pointsHard, setPointsHard] = useState(0);
+
     const [activeIndex, setActiveIndex] = useState(0);
     const onPieEnter = useCallback(
         (_, index) => {
@@ -16,6 +14,49 @@ export const Chart = () => {
         },
         [setActiveIndex]
     );
+
+    async function getPointsByUsername() {
+        let username = localStorage.getItem('usernameFromURL')
+        const url = `http://localhost:8080/usr/data/getpointsandcategory?username=${username}`;
+
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                "Content-Type": "text/plain"
+            }
+        });
+
+        if (response.ok) {
+            const data = await response.text();
+
+            let temp_array_rows = data.split('-');
+            let verify_items_array = temp_array_rows.toString();
+            let strRows = temp_array_rows.toString().split(',');
+            
+            if (verify_items_array.toString().includes("Fácil")) {
+                setPointsEasy(Number(strRows[1]))
+            }
+
+            if (verify_items_array.toString().includes("Medio")) {
+                setPointsMedium(Number(strRows[3]));
+            }
+
+            if (verify_items_array.toString().includes("Difícil")) {
+                setPointsHard(Number(strRows[5]))
+            }
+        }
+    }
+
+    const data = [
+        { name: 'Fácil', value: pointsEasy },
+        { name: 'Medio', value: pointsMedium },
+        { name: 'Difícil', value: pointsHard },
+    ];
+
+    useEffect(() => {
+        getPointsByUsername();
+        console.log("Points easy", pointsEasy)
+    }, []);
 
     return (
         <section className="w-full">
