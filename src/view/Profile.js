@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { HeaderPrivateUser } from "../components/header/Header";
 import { AvatarSection } from "./sections/profile/CardAvatar";
 import { Chart } from "./sections/profile/ChartExercise";
+import { CardHistory } from "./sections/profile/CardHistory";
 
 export function Profile() {
     useEffect(() => {
@@ -21,8 +22,13 @@ export function Profile() {
                 <div className="pl-10 pt-10">
                     <AvatarSection />
                 </div>
-                <div className="pt-10 pr-10">
-                    <Chart />
+                <div className="grid grid-cols-1 gap-5">
+                    <div className="pt-10 pr-10">
+                        <Chart />
+                    </div>
+                    <div className="pt-10 pr-10">
+                        <CardHistory />
+                    </div>
                 </div>
             </main>
         </>

@@ -32,6 +32,7 @@ export const AvatarSection = () => {
                 let array_temp = data.split(',');
 
                 setLinksHttp(array_temp);
+                console.log(array_temp)
             }
         } catch (e) {
             console.error(e);
@@ -67,6 +68,8 @@ export const AvatarSection = () => {
         fetchGeneralData();
         getUrlsByUser();
     }, []);
+
+    const filteredLinks = linksHttp.filter(link => link.trim() !== '');
 
     return (
         <section className="w-full">
@@ -129,14 +132,14 @@ export const AvatarSection = () => {
                     ) : (
                         <></>
                     )}
-                    {linksHttp !== null ? (
+                    {filteredLinks !== null && filteredLinks.length > 0 ? (
                         <>
                         <div className="flex ml-5 mr-10">
                             <Label className="text-lg">Links</Label>
                         </div>
-                        {linksHttp.map((element, index) => (
+                        {filteredLinks.map((element, index) => (
                             <div key={index}
-                            className="ml-2">
+                            className="ml-2 sm:text-sm">
                                 <Button
                                     variant="link"
                                 >
@@ -148,7 +151,9 @@ export const AvatarSection = () => {
                         ))}
                         </>
                     ) : (
-                        <></>
+                        <div className="text-sm">
+                            Ningún link agregado
+                        </div>
                     )
                     }
                 </CardContent>
