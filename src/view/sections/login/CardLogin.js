@@ -3,6 +3,7 @@ import { Input } from "../../../components/ui/input"
 import { Button } from "../../../components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../../../components/ui/popover";
 import { useState } from "react";
+import { Label } from "../../../components/ui/label";
 
 export const CardLogin = ({
     extractUsername,
@@ -77,6 +78,7 @@ export const CardLogin = ({
                                 <Input id="username" 
                                 name="username" 
                                 placeholder="Ingrese su usuario"
+                                autoComplete="true"
                                     onChange={extractUsername} />
                             </div>
                             <div className="flex items-center gap-3">
@@ -127,9 +129,9 @@ export const CardLogin = ({
 
                     <Popover>
                         <PopoverTrigger>
-                            <Button variant="link">
+                            <Label className="text-red-600 underline">
                                 ¿Olvidaste tu contraseña?
-                            </Button>
+                            </Label>
                         </PopoverTrigger>
                         <PopoverContent>
                             <div className="grid gap-3">
