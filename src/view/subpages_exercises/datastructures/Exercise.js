@@ -11,6 +11,8 @@ import Cookies from "js-cookie";
 import { HoverCardCustom } from "../../../components/HoverCard";
 import { useLocation } from "react-router-dom";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "../../../components/ui/resizable";
+import { title } from "process";
+import { TickDate, TickTime } from "../../../utils/CurrentTime";
 
 export const ResolveExerciseDS = () => {
     const location = useLocation();
@@ -44,7 +46,7 @@ export const ResolveExerciseDS = () => {
         }
 
         try {
-            await fetch("http://localhost:8080/test/ds/findtheoddnumbers", {
+            const response = await fetch("http://localhost:8080/test/ds/findtheoddnumbers", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -52,6 +54,23 @@ export const ResolveExerciseDS = () => {
                 },
                 body: JSON.stringify(data)
             });
+
+            if (response.ok) {
+                toast({
+                    title: "OK",
+                    description: "Ejercicio resuelto: "+TickDate().toString()+" | "+TickTime().toString(),
+                    duration: 1000
+                })
+            } else {
+                toast({
+                    title: "Un error ha ocurrido.",
+                    description: "Incapaz de compilar el código: "+TickDate().toString()+" | "+TickTime().toString(),
+                    status: `${response.status}`,
+                    duration: 1000,
+                    variant: "destructive"
+                });
+            }
+
         } catch (e) {
             toast({
                 title: "Un error ha ocurrido.",

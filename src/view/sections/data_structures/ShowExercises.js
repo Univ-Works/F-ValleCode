@@ -96,6 +96,7 @@ function TableProblems({
             const data = await response.text();
             const problemsArray = data.split('-').map(row => row.split(','));
             setIsSolvedDs(problemsArray);
+            console.log(problemsArray)
         }
     }
 
@@ -108,6 +109,11 @@ function TableProblems({
 
         showAllSolvedExercises();
     }, []);
+
+    const resolvedProblemsMap = isSolvedDs.reduce((acc, [resolvedId]) => {
+        acc[resolvedId] = true;
+        return acc;
+    }, {});
 
     return (
         <Table>
@@ -140,10 +146,11 @@ function TableProblems({
                             {problem[3]}
                         </TableCell>
                         <TableCell>
-                            {isSolvedDs.length > 0 && isSolvedDs[0] && isSolvedDs[0][0] === problem[0] ?
+                            {resolvedProblemsMap[problem[0]] ?
                                 (
                                     <>
                                         <svg key={index+1}
+                                            id={`svg-${index+1}`}
                                             width="25"
                                             height="25"
                                             viewBox="0 0 15 15"
@@ -162,6 +169,7 @@ function TableProblems({
                                 : (
                                     <>
                                         <svg key={index+1}
+                                            id={`svg-${index+1}`}
                                             width="25"
                                             height="25"
                                             viewBox="0 0 15 15"

@@ -1,9 +1,8 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../../components/ui/table";
-import { 
-    Card, 
-    CardContent, 
-    CardDescription, 
-    CardHeader 
+import {
+    Card,
+    CardContent,
+    CardHeader
 } from "../../../components/ui/card";
 import { useEffect, useState } from "react";
 
@@ -16,7 +15,7 @@ export const CardHistory = () => {
     let username = localStorage.getItem('usernameFromURL');
 
     async function getAllExerciseSolved() {
-        let array_temp = []
+        let array_rows = []
         let array_title = []
         let array_points = []
         let array_status = []
@@ -31,19 +30,18 @@ export const CardHistory = () => {
             if (response.ok) {
                 const data = await response.text()
 
-                array_temp = data.split('-')
-                setExerciseSolved(array_temp)
+                array_rows = data.split('-')
+                setExerciseSolved(array_rows)
 
-                for (let x in array_temp) {
-                    let item = array_temp[x].toString().split(',')
-                    array_title.push(item[0])
-                    array_points.push(item[1])
-                    array_status.push(item[2])
+                for (let x in array_rows) {
+                    let [v_title, v_points, v_state] = array_rows[x].toString().split(',')
+                    array_title.push(v_title)
+                    array_points.push(v_points)
+                    array_status.push(v_state)
                 }
                 setTitle(array_title)
                 setPoint(array_points)
                 setStatus(array_status)
-                console.log(array_temp.length)
             }
 
         } catch (error) { console.error(error) }
@@ -52,6 +50,8 @@ export const CardHistory = () => {
     useEffect(() => {
         getAllExerciseSolved()
     }, [])
+
+    const filteredExercisesSolved = exerciseSolved.filter(exercise => exercise.trim() !== '');
 
     return (
         <section className="w-full">
@@ -69,30 +69,26 @@ export const CardHistory = () => {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {exerciseSolved ? (
-                                exerciseSolved.map((_, index) => (
+                            {filteredExercisesSolved.length > 0 ? (
+                                filteredExercisesSolved.map((_, index) => (
                                     <TableRow key={index}>
-                                        {title.map((element, index) => (
-                                            <TableCell key={index}>
-                                                {element}
-                                            </TableCell>
-                                        ))}
-                                        {points.map((element, index) => (
-                                            <TableCell key={index}>
-                                                {element}
-                                            </TableCell>
-                                        ))}
-                                        {status.map((element, index) => (
-                                            <TableCell className="font-bold" key={index}>
-                                                {element}
-                                            </TableCell>
-                                        ))}
+                                        <TableCell>
+                                            {title[index]}
+                                        </TableCell>
+                                        <TableCell>
+                                            {points[index]}
+                                        </TableCell>
+                                        <TableCell className="font-bold">
+                                            {status[index]}
+                                        </TableCell>
                                     </TableRow>
                                 ))
-                            ): (
-                                <div className="flex justify-center w-full">
-                                    Ningún ejercicio resuelto
-                                </div>
+                            ) : (
+                                <TableRow>
+                                    <TableCell> - </TableCell>
+                                    <TableCell> - </TableCell>
+                                    <TableCell> - </TableCell>
+                                </TableRow>
                             )}
                         </TableBody>
                     </Table>

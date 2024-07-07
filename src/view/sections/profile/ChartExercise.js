@@ -30,20 +30,23 @@ export const Chart = () => {
             const data = await response.text();
 
             let temp_array_rows = data.split('-');
-            let verify_items_array = temp_array_rows.toString();
-            let strRows = temp_array_rows.toString().split(',');
             
-            if (verify_items_array.toString().includes("Fácil")) {
-                setPointsEasy(Number(strRows[1]))
-            }
+            temp_array_rows.forEach(row => {
+                let [categoría, puntos] = row.split(',');
+                puntos = Number(puntos);
 
-            if (verify_items_array.toString().includes("Medio")) {
-                setPointsMedium(Number(strRows[3]));
-            }
-
-            if (verify_items_array.toString().includes("Difícil")) {
-                setPointsHard(Number(strRows[5]))
-            }
+                switch (categoría.trim()) {
+                    case "Fácil":
+                        setPointsEasy(puntos);
+                        break;
+                    case "Medio":
+                        setPointsMedium(puntos);
+                        break;
+                    case "Difícil":
+                        setPointsHard(puntos);
+                        break;
+                }
+            })
         }
     }
 
@@ -55,27 +58,36 @@ export const Chart = () => {
 
     useEffect(() => {
         getPointsByUsername();
-        console.log("Points easy", pointsEasy)
-    }, []);
+    }, [data]);
 
     return (
         <section className="w-full">
             <Card className="pb-5 shadow-2xl">
                 <CardContent className="flex justify-center">
-                    <PieChart width={500} height={300}>
-                        <Pie
-                            activeIndex={activeIndex}
-                            activeShape={renderActiveShape}
-                            data={data}
-                            cx={250}
-                            cy={150}
-                            innerRadius={60}
-                            outerRadius={80}
-                            fill="#8884d8"
-                            dataKey="value"
-                            onMouseEnter={onPieEnter}
-                        />
-                    </PieChart>
+                    {
+                        !data ? (
+                            <div className="flex justify-center font-bold">
+                                Sin Stats
+                            </div>
+                        ) :
+                            (
+                                <PieChart width={500} height={300}>
+                                    <Pie
+                                        activeIndex={activeIndex}
+                                        activeShape={renderActiveShape}
+                                        data={data}
+                                        cx={250}
+                                        cy={150}
+                                        innerRadius={60}
+                                        outerRadius={80}
+                                        fill="#8884d8"
+                                        dataKey="value"
+                                        onMouseEnter={onPieEnter}
+                                    />
+                                </PieChart>
+                            )
+                    }
+
                 </CardContent>
             </Card>
         </section>
