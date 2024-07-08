@@ -32,7 +32,7 @@ export function Login() {
                 Cookies.set('token', data.jwt, {
                     expires: 1,
                     sameSite: 'None',
-                    secure: false
+                    secure: true
                 });
 
                 localStorage.setItem('username', username);
