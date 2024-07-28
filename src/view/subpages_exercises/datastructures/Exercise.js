@@ -172,10 +172,10 @@ export const ResolveExerciseDS = () => {
                                         value={code}
                                         onChange={extractCode} />
                                 </ResizablePanel>
-                                <ResizableHandle withHandle />
-                                <ResizablePanel>
+                                {/*<ResizableHandle withHandle />*/}
+                                {/*<ResizablePanel>
                                     <Output />
-                                </ResizablePanel>
+                                </ResizablePanel>*/}
                             </ResizablePanelGroup>
                         </ResizablePanel>
                     </ResizablePanelGroup>
